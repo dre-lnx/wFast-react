@@ -14,17 +14,14 @@ import {
 
 const AppRouter = () => {
 
-
         return (
             <Router>
-                <NavBar />
               <Switch>
-                  <Route path="/login" >
-                      <Login />
-                  </Route>
-                  <Route path="/" >
-                      <Home />
-                  </Route>
+                  <Route path="/login" component={Login} />
+                  <div>
+                  <NavBar />
+                  <Route path="/" component={Home} />
+                  </div>
               </Switch>
             </Router>
             );

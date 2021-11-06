@@ -10,13 +10,8 @@ html {
 
   height:100vh;
 
-  background: hsla(233, 24%, 93%, 1);
-
-  background: linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
-  
-  background: -moz-linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
-  
-  background: -webkit-linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
+  background: rgb(148,152,210);
+  background: radial-gradient(circle, rgba(148,152,210,1) 0%, rgba(181,184,224,1) 100%);
   
 }
 
@@ -126,7 +121,7 @@ $animation-pattern: .5s;
     }
 
     input[type="submit"]:hover {
-        background-color: #4d557d;
+        background-color: #3f48cc;
     }
   }
 

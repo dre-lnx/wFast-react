@@ -66,6 +66,7 @@ nav {
 }
 
 .form-y-layout input[type="text"], .form-y-layout input[type="password"] {
+  outline: none;
   height: 30px;
   border-top: none;
   border-left: none;

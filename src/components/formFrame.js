@@ -8,7 +8,7 @@ const FormFrame = () => {
             <div class="form-y-layout">
                 <input type="text" placeholder="E-mail ou usuário"/>
                 <input type="password" placeholder="Senha"/>
-                <input type="submit" value="Sign In"/>
+                <input type="submit" value="Entrar"/>
             </div>
             <a href="">Ainda não possuo conta</a>
         </form>

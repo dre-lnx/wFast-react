@@ -76,6 +76,7 @@ $border-pattern: #d4d4d4;
         margin-bottom: 23px;
       }
       input[type="text"], input[type="password"] {
+          outline: none;
           height:30px;
           border-top:none;
           border-left:none;

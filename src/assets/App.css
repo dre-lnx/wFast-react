@@ -9,17 +9,27 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    -webkit-animation: App-logo-spin infinite 20s linear;
+            animation: App-logo-spin infinite 20s linear;
   }
 }
 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -28,69 +38,53 @@
   color: #61dafb;
 }
 
-.form-content {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 1rem;
-}
-
-.form-conten {
-  border-radius: 20px;
-}
-
-
-.login-container {
-  background-color: #61dafb;
-  margin-top: 30vh;
-}
-
-body {
-  background-color: #c2c2c2;
-}
-
 /*----------------NavBar/*----------------*/
-
 nav {
-  padding:0;
-  margin:0;
-
+  padding: 0;
+  margin: 0;
 }
 
 .nav-container {
   background-color: white;
-  margin-top:0;
+  margin-top: 0;
   min-width: 100%;
+  -webkit-box-shadow: 0px 5px 13px 1px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 5px 13px 1px rgba(0, 0, 0, 0.26);
 }
 
 .a-list ul {
-  display:flex;
-  flex-direction: row;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   width: 80px;
   list-style: none;
   margin: 0px;
 }
 
 .a-list li {
-  padding:15px;
+  padding: 15px;
 }
 
-.a-list li *{
-  padding:15px;
+.a-list li * {
+  padding: 15px;
   text-decoration: none;
-  color: #666666;
+  color: black;
 }
 
 .wFast-logo {
-  width:50px;
+  width: 50px;
 }
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*/*----------------FormFrame/*----------------*/
+.login-container-sm {
+  border: 1px solid #d4d4d4;
+  margin: auto;
+  margin-top: 30vh;
+  width: 100%;
+  max-width: 400px;
 }
+/*# sourceMappingURL=App.css.map */

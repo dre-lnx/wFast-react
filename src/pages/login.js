@@ -1,11 +1,10 @@
 import React from 'react';
 import '../assets/App.css';
+import FormFrame from '../components/formFrame';
 
 const Login = () => {
     return (
-        <div>
-            Supposed to be login
-        </div>
+        <FormFrame />
     )
 }
 

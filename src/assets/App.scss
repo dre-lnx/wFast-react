@@ -3,6 +3,8 @@
 $box-spacing: 28px;
 
 $border-pattern: #d4d4d4;
+
+$animation-pattern: .5s;
   
 
 /*/*----------------Mixins----------------*/
@@ -82,6 +84,10 @@ $border-pattern: #d4d4d4;
           border-left:none;
           border-right:none;
           border-bottom: 1px solid $border-pattern;
+          transition: $animation-pattern
+      }
+      input[type="text"]:focus, input[type="password"]:focus {
+          border-bottom: 1px solid #003F63;
       }
       input[type="submit"] {
         height:33px;
@@ -90,6 +96,11 @@ $border-pattern: #d4d4d4;
         color: white;
         cursor: pointer;
         border-radius:8px;
+        transition: $animation-pattern;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #4d557d;
     }
 
   }

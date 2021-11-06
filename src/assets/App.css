@@ -72,6 +72,12 @@ nav {
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #d4d4d4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.form-y-layout input[type="text"]:focus, .form-y-layout input[type="password"]:focus {
+  border-bottom: 1px solid #003F63;
 }
 
 .form-y-layout input[type="submit"] {
@@ -81,5 +87,11 @@ nav {
   color: white;
   cursor: pointer;
   border-radius: 8px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.form-y-layout input[type="submit"]:hover {
+  background-color: #4d557d;
 }
 /*# sourceMappingURL=App.css.map */

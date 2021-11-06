@@ -1,3 +1,25 @@
+/*----------------Fonts----------------*/
+
+/*font-family: 'Open Sans', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/*----------------Body----------------*/
+
+html {
+
+  height:100vh;
+
+  background: hsla(233, 24%, 93%, 1);
+
+  background: linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
+  
+  background: -moz-linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
+  
+  background: -webkit-linear-gradient(90deg, hsla(233, 24%, 93%, 1) 0%, hsla(225, 48%, 89%, 1) 100%);
+  
+}
+
 /*----------------Variables----------------*/
 
 $box-spacing: 28px;
@@ -20,11 +42,11 @@ $animation-pattern: .5s;
 }
 
 /*----------------NavBar/*----------------*/
-  
-  nav {
-    padding:0;
-    margin:0;
-  
+
+  .nav-logo {
+    height:25px;
+    margin-top:14px;
+    padding-left:15px;
   }
   
   .nav-container {
@@ -36,21 +58,22 @@ $animation-pattern: .5s;
   }
   
   .a-list{
+    padding:0;
+    margin:0;
+  
+    @include flex-x();
+
       ul {
-        display:flex;
-        flex-direction: row;
+        @include flex-x();
         width: 80px;
         list-style: none;
         margin: 0px;
       }
-  }
-  
-  .a-list {
       li {
         padding:15px;
       }
   }
-  
+
   .a-list li *{
     padding:15px;
     text-decoration: none;
@@ -64,11 +87,13 @@ $animation-pattern: .5s;
   /*----------------FormFrame----------------*/
   
   .login-container-sm {
-    border: 1px solid $border-pattern;
+    background-color: white;
+    -webkit-box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15); 
+    box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15);
     margin: auto;
-    margin-top:30vh;
+    margin-top:20vh;
     width: 100%;
-    max-width: 350px;
+    max-width: 325px;
     padding: $box-spacing;
   }
 
@@ -76,6 +101,7 @@ $animation-pattern: .5s;
       @include flex-y;
       * {
         margin-bottom: 23px;
+        font-family: 'Open Sans', sans-serif;
       }
       input[type="text"], input[type="password"] {
           outline: none;
@@ -91,17 +117,32 @@ $animation-pattern: .5s;
       }
       input[type="submit"] {
         height:33px;
-        background-color: #003F63;
+        background-color: #0275d8 ;
         border: none;
         color: white;
         cursor: pointer;
-        border-radius:8px;
         transition: $animation-pattern;
+        font-size: 15px;
     }
 
     input[type="submit"]:hover {
         background-color: #4d557d;
     }
+  }
 
+  .formLogo {
+    height:70px;
+  }
+
+  .header {
+    text-align: center;
+    justify-content: space-around;
+    padding: $box-spacing;
+  }
+
+  .form-link {
+    font-size:10pt;
+    color: #0275d8;
+    text-decoration: none;
   }
   

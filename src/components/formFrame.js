@@ -1,17 +1,21 @@
 import React from "react";
+import logo from '../assets/logo.svg';
 
 const FormFrame = () => {
     return (
     
-    <div class="login-container-sm">
+    <div className="login-container-sm">
         <form>
-            <div class="form-y-layout">
-                <h1>WFAST</h1>
+            <div className="form-y-layout">
+                <div className="header">
+                    <img src={logo} alt="wfast logo" className="formLogo"/>
+                </div>
                 <input type="text" placeholder="E-mail ou usuário"/>
                 <input type="password" placeholder="Senha"/>
                 <input type="submit" value="Entrar"/>
+                <a href="google.com" className="form-link">Ainda não tem uma conta?</a>
+                <a href="google.com" className="form-link">Esqueci minha senha</a>
             </div>
-            <a href="">Ainda não possuo conta</a>
         </form>
     </div>
     );

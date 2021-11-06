@@ -1,9 +1,23 @@
+/*----------------Fonts----------------*/
+/*font-family: 'Open Sans', sans-serif;*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+/*----------------Body----------------*/
+html {
+  height: 100vh;
+  background: #e9eaf1;
+  background: -webkit-gradient(linear, left top, right top, from(#e9eaf1), to(#d5dcf0));
+  background: linear-gradient(90deg, #e9eaf1 0%, #d5dcf0 100%);
+  background: -webkit-linear-gradient(90deg, #e9eaf1 0%, #d5dcf0 100%);
+}
+
 /*----------------Variables----------------*/
 /*/*----------------Mixins----------------*/
 /*----------------NavBar/*----------------*/
-nav {
-  padding: 0;
-  margin: 0;
+.nav-logo {
+  height: 25px;
+  margin-top: 14px;
+  padding-left: 15px;
 }
 
 .nav-container {
@@ -12,6 +26,18 @@ nav {
   min-width: 100%;
   -webkit-box-shadow: 0px 5px 13px 1px rgba(0, 0, 0, 0.26);
   box-shadow: 0px 5px 13px 1px rgba(0, 0, 0, 0.26);
+}
+
+.a-list {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .a-list ul {
@@ -43,11 +69,13 @@ nav {
 
 /*----------------FormFrame----------------*/
 .login-container-sm {
-  border: 1px solid #d4d4d4;
+  background-color: white;
+  -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
   margin: auto;
-  margin-top: 30vh;
+  margin-top: 20vh;
   width: 100%;
-  max-width: 350px;
+  max-width: 325px;
   padding: 28px;
 }
 
@@ -63,6 +91,7 @@ nav {
 
 .form-y-layout * {
   margin-bottom: 23px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .form-y-layout input[type="text"], .form-y-layout input[type="password"] {
@@ -82,16 +111,33 @@ nav {
 
 .form-y-layout input[type="submit"] {
   height: 33px;
-  background-color: #003F63;
+  background-color: #0275d8;
   border: none;
   color: white;
   cursor: pointer;
-  border-radius: 8px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  font-size: 15px;
 }
 
 .form-y-layout input[type="submit"]:hover {
   background-color: #4d557d;
+}
+
+.formLogo {
+  height: 70px;
+}
+
+.header {
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 28px;
+}
+
+.form-link {
+  font-size: 10pt;
+  color: #0275d8;
+  text-decoration: none;
 }
 /*# sourceMappingURL=App.css.map */

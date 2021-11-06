@@ -1,46 +1,33 @@
-import React from 'react';
+import { React } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";
+
+  import NavBar from '../components/navBar';
+
 
   import Login from '../pages/login';
   import Home from '../pages/home';
-
   import '../assets/App.css'
 
-const NavBar = () => {
-      return (
-      <Router>
-            <div className="nav-container">
-                <nav className="a-list">
-                    <ul>
-                        <li>
-                            <Link to="/Login">
-                                    Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/">
-                                    Home
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+const AppRouter = () => {
 
-        <Switch>
-            <Route path="/login">
-                <Login />
-            </Route>
-            <Route path="/">
-                <Home />
-            </Route>
-        </Switch>
-      </Router>
-      );
-  }
 
-export default NavBar;
+        return (
+            <Router>
+                <NavBar />
+              <Switch>
+                  <Route path="/login" >
+                      <Login />
+                  </Route>
+                  <Route path="/" >
+                      <Home />
+                  </Route>
+              </Switch>
+            </Router>
+            );
+    }
+
+export default AppRouter;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import './assets/App.css';
-import NavBar from './routes';
+import AppRouter from './routes';
 
 function App() {
   return (
-    <NavBar />
+    <AppRouter />
   );
 }
 

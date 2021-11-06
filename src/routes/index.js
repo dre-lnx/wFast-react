@@ -9,8 +9,6 @@ import {
   import Login from '../pages/login';
   import Home from '../pages/home';
 
-  import logo from '../assets/wfast-logo.png';
-
   import '../assets/App.css'
 
 const NavBar = () => {

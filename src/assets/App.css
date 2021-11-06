@@ -123,8 +123,8 @@ html {
 }
 
 .formLogo {
-  max-height: 70px;
-  height: 100%;
+  width: 100%;
+  max-width: 224px;
 }
 
 .header {

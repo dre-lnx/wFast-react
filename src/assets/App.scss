@@ -1,35 +1,23 @@
-.App {
-    text-align: center;
-  }
+/*----------------Variables----------------*/
+
+$box-spacing: 28px;
+
+$border-pattern: #d4d4d4;
   
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
+
+/*/*----------------Mixins----------------*/
+
+@mixin flex-y {
+    display:flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  
-  /*----------------NavBar/*----------------*/
+}
+
+@mixin flex-x {
+    display: flex;
+    flex-direction: row;
+}
+
+/*----------------NavBar/*----------------*/
   
   nav {
     padding:0;
@@ -71,13 +59,37 @@
     width:50px;
   }
   
-  /*/*----------------FormFrame/*----------------*/
+  /*----------------FormFrame----------------*/
   
   .login-container-sm {
-    border: 1px solid #d4d4d4;
+    border: 1px solid $border-pattern;
     margin: auto;
     margin-top:30vh;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
+    padding: $box-spacing;
+  }
+
+  .form-y-layout {
+      @include flex-y;
+      * {
+        margin-bottom: 23px;
+      }
+      input[type="text"], input[type="password"] {
+          height:30px;
+          border-top:none;
+          border-left:none;
+          border-right:none;
+          border-bottom: 1px solid $border-pattern;
+      }
+      input[type="submit"] {
+        height:33px;
+        background-color: #003F63;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius:8px;
+    }
+
   }
   

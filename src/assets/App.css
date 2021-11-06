@@ -5,8 +5,8 @@
 /*----------------Body----------------*/
 html {
   height: 100vh;
-  background: #9498d2;
-  background: radial-gradient(circle, #9498d2 0%, #b5b8e0 100%);
+  background: #9296cb;
+  background: radial-gradient(circle, #9296cb 0%, #3f48cc 100%);
 }
 
 /*----------------Variables----------------*/
@@ -69,7 +69,7 @@ html {
 .login-container-sm {
   background-color: white;
   -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
-  box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
+          box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
   margin: auto;
   margin-top: 20vh;
   width: 100%;
@@ -123,7 +123,8 @@ html {
 }
 
 .formLogo {
-  height: 70px;
+  max-height: 70px;
+  height: 100%;
 }
 
 .header {
@@ -137,5 +138,16 @@ html {
   font-size: 10pt;
   color: #0275d8;
   text-decoration: none;
+}
+
+@media only screen and (max-width: 640px) {
+  html {
+    background: white;
+  }
+  .login-container-sm {
+    margin-top: 10vh;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
 }
 /*# sourceMappingURL=App.css.map */

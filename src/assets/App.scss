@@ -10,8 +10,10 @@ html {
 
   height:100vh;
 
-  background: rgb(148,152,210);
-  background: radial-gradient(circle, rgba(148,152,210,1) 0%, rgba(181,184,224,1) 100%);
+  background: rgb(146,150,203);
+  background: radial-gradient(circle, rgba(146,150,203,1) 0%, rgba(63,72,204,1) 100%);
+  
+  
   
 }
 
@@ -83,7 +85,6 @@ $animation-pattern: .5s;
   
   .login-container-sm {
     background-color: white;
-    -webkit-box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15); 
     box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15);
     margin: auto;
     margin-top:20vh;
@@ -126,7 +127,8 @@ $animation-pattern: .5s;
   }
 
   .formLogo {
-    height:70px;
+    max-height:70px;
+    height:100%;
   }
 
   .header {
@@ -141,3 +143,13 @@ $animation-pattern: .5s;
     text-decoration: none;
   }
   
+  @media only screen and (max-width: 640px) {
+    html {
+      background: white;
+    }
+    .login-container-sm {
+      margin-top: 10vh;
+      box-shadow: none;
+    }
+
+  }

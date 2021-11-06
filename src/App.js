@@ -4,9 +4,7 @@ import NavBar from './routes';
 
 function App() {
   return (
-    <NavBar>
-
-    </NavBar>
+    <NavBar />
   );
 }
 

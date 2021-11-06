@@ -9,11 +9,15 @@ import {
   import Login from '../pages/login';
   import Home from '../pages/home';
 
+  import logo from '../assets/wfast-logo.png';
+
+  import '../assets/App.css'
+
 const NavBar = () => {
       return (
       <Router>
-            <div>
-                <nav>
+            <div className="nav-container">
+                <nav className="a-list">
                     <ul>
                         <li>
                             <Link to="/Login">

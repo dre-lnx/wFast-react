@@ -45,6 +45,46 @@
   margin-top: 30vh;
 }
 
+body {
+  background-color: #c2c2c2;
+}
+
+/*----------------NavBar/*----------------*/
+
+nav {
+  padding:0;
+  margin:0;
+
+}
+
+.nav-container {
+  background-color: white;
+  margin-top:0;
+  min-width: 100%;
+}
+
+.a-list ul {
+  display:flex;
+  flex-direction: row;
+  width: 80px;
+  list-style: none;
+  margin: 0px;
+}
+
+.a-list li {
+  padding:15px;
+}
+
+.a-list li *{
+  padding:15px;
+  text-decoration: none;
+  color: #666666;
+}
+
+.wFast-logo {
+  width:50px;
+}
+
 
 @keyframes App-logo-spin {
   from {

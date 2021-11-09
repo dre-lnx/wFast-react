@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import logo from '../assets/only_logo.svg';
 
+import avatar from '../assets/rick.jpg';
+
 
 const NavBar = () => {
     return (
@@ -22,8 +24,17 @@ const NavBar = () => {
                             Home
                     </Link>
                 </li>
+                <li>
+                    <Link to="/dashboard">
+                        Dashboard
+                    </Link>
+                </li>
             </ul>
         </nav>
+        <div className="avatar-div">
+            <span className="avatar-title">Rick</span>
+            <img src={avatar} alt="user avatar" className="avatar-img" />
+        </div>
         </div>
     );
 };

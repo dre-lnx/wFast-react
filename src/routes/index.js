@@ -7,7 +7,7 @@ import {
 
   import NavBar from '../components/navBar';
 
-
+  import Dashboard from '../pages/dashboard';
   import Login from '../pages/login';
   import Home from '../pages/home';
   import '../assets/App.css'
@@ -20,7 +20,8 @@ const AppRouter = () => {
                   <Route path="/login" component={Login} />
                   <div>
                   <NavBar />
-                  <Route path="/" component={Home} />
+                  <Route path="/" exact component={Home} />
+                  <Route path="/dashboard" exact component={Dashboard} />
                   </div>
               </Switch>
             </Router>

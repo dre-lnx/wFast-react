@@ -119,6 +119,15 @@ html {
   padding: 28px;
 }
 
+#signIn-form {
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+
+#signUp-form {
+  display: none;
+}
+
 .form-y-layout {
   display: -webkit-box;
   display: -ms-flexbox;

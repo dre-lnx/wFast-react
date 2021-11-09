@@ -126,6 +126,14 @@ $animation-pattern: .5s;
     padding: $box-spacing;
   }
 
+  #signIn-form {
+    transition: 2s;
+  }
+
+  #signUp-form {
+    display:none;
+  }
+
   .form-y-layout {
       @include flex-y;
       * {

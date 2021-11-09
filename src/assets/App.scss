@@ -116,6 +116,7 @@ $animation-pattern: .5s;
   /*----------------FormFrame----------------*/
   
   .login-container-sm {
+    overflow: hidden;
     background-color: white;
     box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15);
     margin: auto;
@@ -170,6 +171,9 @@ $animation-pattern: .5s;
   }
 
   .form-link {
+    border: none;
+    font-size: 10pt;
+    text-align: left;
     font-size:10pt;
     color: #0275d8;
     text-decoration: none;
@@ -195,5 +199,5 @@ $animation-pattern: .5s;
     margin-top: 6vh;
     padding: $box-spacing;
     background-color: white;
-    
+
   }

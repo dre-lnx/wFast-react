@@ -1,20 +1,23 @@
-import React from "react";
+import { React, useState } from "react";
 import logo from '../assets/logo.svg';
 
 const FormFrame = () => {
+
+    const [signUp, setSignUp] = useState(false);
+
     return (
     
     <div className="login-container-sm">
         <form>
-            <div className="form-y-layout">
+            <div className="form-y-layout" id="signUpForm">
                 <div className="header">
                     <img src={logo} alt="wfast logo" className="formLogo"/>
                 </div>
                 <input type="text" placeholder="E-mail ou usuário"/>
                 <input type="password" placeholder="Senha"/>
                 <input type="submit" value="Entrar"/>
-                <a href="google.com" className="form-link">Ainda não tem uma conta?</a>
-                <a href="google.com" className="form-link">Esqueci minha senha</a>
+                <button className="form-link" onClick={() => {setSignUp(true)}}>Ainda não tem uma conta?</button>
+                <button className="form-link">Esqueci minha senha</button>
             </div>
         </form>
     </div>

@@ -38,6 +38,10 @@ $animation-pattern: .5s;
     flex-direction: row;
 }
 
+@mixin center {
+  margin: auto;
+}
+
 /*----------------NavBar/*----------------*/
 
   .nav-logo {
@@ -83,19 +87,8 @@ $animation-pattern: .5s;
   .wFast-logo {
     width:50px;
   }
-  
-  /*----------------FormFrame----------------*/
-  
-  .login-container-sm {
-    background-color: white;
-    box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15);
-    margin: auto;
-    margin-top:20vh;
-    width: 100%;
-    max-width: 325px;
-    padding: $box-spacing;
-  }
 
+  
   .avatar-div {
     display:flex;
     flex-direction: row;
@@ -116,8 +109,20 @@ $animation-pattern: .5s;
     margin-right: 15px;
   }
 
-  .avatar:hover {
+  .avatar-div:hover {
     cursor: pointer;
+  }
+  
+  /*----------------FormFrame----------------*/
+  
+  .login-container-sm {
+    background-color: white;
+    box-shadow: -1px 10px 11px 6px rgba(0,0,0,0.15);
+    margin: auto;
+    margin-top:20vh;
+    width: 100%;
+    max-width: 325px;
+    padding: $box-spacing;
   }
 
   .form-y-layout {
@@ -179,4 +184,16 @@ $animation-pattern: .5s;
       box-shadow: none;
     }
 
+  }
+
+  /*----------------Dashboard----------------*/
+
+  .dashboard-container{
+    @include center();
+    width:100%;
+    max-width: 1400px;
+    margin-top: 6vh;
+    padding: $box-spacing;
+    background-color: white;
+    
   }

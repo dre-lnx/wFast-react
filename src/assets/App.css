@@ -75,18 +75,6 @@ html {
   width: 50px;
 }
 
-/*----------------FormFrame----------------*/
-.login-container-sm {
-  background-color: white;
-  -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
-          box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
-  margin: auto;
-  margin-top: 20vh;
-  width: 100%;
-  max-width: 325px;
-  padding: 28px;
-}
-
 .avatar-div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -114,8 +102,20 @@ html {
   margin-right: 15px;
 }
 
-.avatar:hover {
+.avatar-div:hover {
   cursor: pointer;
+}
+
+/*----------------FormFrame----------------*/
+.login-container-sm {
+  background-color: white;
+  -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
+          box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
+  margin: auto;
+  margin-top: 20vh;
+  width: 100%;
+  max-width: 325px;
+  padding: 28px;
 }
 
 .form-y-layout {
@@ -190,5 +190,15 @@ html {
     -webkit-box-shadow: none;
             box-shadow: none;
   }
+}
+
+/*----------------Dashboard----------------*/
+.dashboard-container {
+  margin: auto;
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 6vh;
+  padding: 28px;
+  background-color: white;
 }
 /*# sourceMappingURL=App.css.map */

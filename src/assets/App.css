@@ -107,6 +107,11 @@ html {
 }
 
 /*----------------FormFrame----------------*/
+#signIn-form, #signUp-form {
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
 .login-container-sm {
   overflow: hidden;
   background-color: white;
@@ -122,10 +127,6 @@ html {
 #signIn-form {
   -webkit-transition: 2s;
   transition: 2s;
-}
-
-#signUp-form {
-  display: none;
 }
 
 .form-y-layout {

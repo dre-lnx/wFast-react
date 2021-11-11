@@ -114,6 +114,10 @@ $animation-pattern: .5s;
   }
   
   /*----------------FormFrame----------------*/
+
+  #signIn-form, #signUp-form {
+    transition: .2s;
+  }
   
   .login-container-sm {
     overflow: hidden;
@@ -128,10 +132,6 @@ $animation-pattern: .5s;
 
   #signIn-form {
     transition: 2s;
-  }
-
-  #signUp-form {
-    display:none;
   }
 
   .form-y-layout {

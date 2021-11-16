@@ -325,3 +325,53 @@ $animation-pattern: 0.5s;
     padding: 10px;
   }
 }
+
+/*----------------Items----------------*/
+
+.item-container {
+  @include center();
+  @include flex-x();
+  width: 60%;
+  margin-top: 6vh;
+  padding: $box-spacing;
+
+  .status-header {
+    width: 250px;
+    max-width: 100%;
+    padding: 15px;
+    background-color: white;
+    margin-left: 15px;
+    border-radius: 6px;
+    @include flex-x();
+    justify-content: space-between;
+    .fa-ellipsis-h {
+      border-radius: 6px;
+      padding: 6px;
+      transition: 0.2s;
+    }
+    .fa-ellipsis-h:hover {
+      cursor: pointer;
+      background-color: #bdbdbd;
+    }
+  }
+
+  .status {
+    .status-body {
+      margin-left: 15px;
+      width: 250px;
+      padding: 15px;
+      margin-top: 15px;
+      background-color: white;
+      border-radius: 6px;
+    }
+    .plus-item {
+      margin-left: 15px;
+      width: 250px;
+      padding: 15px;
+      margin-top: 15px;
+      background-color: white;
+      border-radius: 6px;
+      text-align: center;
+    }
+  }
+}

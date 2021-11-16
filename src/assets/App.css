@@ -363,4 +363,69 @@ html {
   -webkit-transform: scale(1.06);
           transform: scale(1.06);
 }
+
+/*----------------Items----------------*/
+.item-container {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 60%;
+  margin-top: 6vh;
+  padding: 28px;
+}
+
+.item-container .status-header {
+  width: 250px;
+  max-width: 100%;
+  padding: 15px;
+  background-color: white;
+  margin-left: 15px;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.item-container .status-header .fa-ellipsis-h {
+  border-radius: 6px;
+  padding: 6px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.item-container .status-header .fa-ellipsis-h:hover {
+  cursor: pointer;
+  background-color: #bdbdbd;
+}
+
+.item-container .status .status-body {
+  margin-left: 15px;
+  width: 250px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.item-container .status .plus-item {
+  margin-left: 15px;
+  width: 250px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 6px;
+  text-align: center;
+}
 /*# sourceMappingURL=App.css.map */

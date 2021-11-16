@@ -120,7 +120,6 @@ $animation-pattern: 0.5s;
 /*----------------FormFrame----------------*/
 
 .login-container-sm {
-  overflow: hidden;
   background-color: white;
   box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
   margin: auto;
@@ -201,9 +200,16 @@ $animation-pattern: 0.5s;
 
 /*----------------Dashboard----------------*/
 
+.divider {
+  height: 1px;
+  width: 93%;
+  @include center();
+  background-color: black;
+}
+
 .dashboard-container {
   @include center();
-  width: 80%;
+  width: 60%;
   margin-top: 6vh;
   padding: $box-spacing;
 }
@@ -213,14 +219,23 @@ $animation-pattern: 0.5s;
   flex-direction: row;
   width: 100%;
 
-  .dashboard-header {
-    margin-left: 10px;
-    font-family: 'Open Sans', sans-serif;
-  }
-
   .dashboard-sidebar,
   .dashboard-body {
     border-radius: 8px;
+  }
+
+  .sidebarContainer {
+    .dashboard-avatar {
+      border-radius: 50%;
+      max-width: 100%;
+      width: 200px;
+    }
+    .dashboard-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $box-spacing;
+    }
   }
 
   .dashboard-sidebar {
@@ -228,7 +243,7 @@ $animation-pattern: 0.5s;
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    width: 20%;
+    width: 30%;
     margin: 10px;
     padding: 10px;
   }
@@ -251,10 +266,61 @@ $animation-pattern: 0.5s;
   }
 
   .dashboard-body {
+    .dashboard-header {
+      hr {
+        width: 95%;
+        background-color: black;
+      }
+    }
+    h1 {
+      margin-bottom: 0px;
+      font-family: 'Open Sans', sans-serif;
+      padding: $box-spacing;
+      margin-top: 0px;
+    }
+    .boardsBody {
+      .addBoard {
+        background-color: #5090d4;
+      }
+      .addBoard:hover {
+        background-color: #5090d4;
+      }
+      display: flex;
+      flex-direction: row;
+      padding: $box-spacing;
+    }
+    .boardCard {
+      .fa-plus {
+        margin-top: 12px;
+        color: white;
+      }
+      display: flex;
+      flex-direction: column;
+      padding-top: 15px;
+      font-family: 'Open Sans', sans-serif;
+      span {
+        color: white;
+      }
+      text-align: center;
+      margin-right: 15px;
+      border-radius: 12px;
+      background-color: #9b4ea3;
+      width: 170px;
+      height: 110px;
+      transition: 0.4s;
+    }
+
+    .boardCard:hover {
+      cursor: pointer;
+      background-color: #7e4085;
+      transform: scale(1.06);
+    }
+
+    padding-left: 10px;
     -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     background-color: white;
-    width: 80%;
+    width: 70%;
     margin: 10px;
     padding: 10px;
   }

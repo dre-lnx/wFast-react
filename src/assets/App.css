@@ -111,7 +111,6 @@ html {
 
 /*----------------FormFrame----------------*/
 .login-container-sm {
-  overflow: hidden;
   background-color: white;
   -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
           box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
@@ -207,9 +206,16 @@ html {
 }
 
 /*----------------Dashboard----------------*/
+.divider {
+  height: 1px;
+  width: 93%;
+  margin: auto;
+  background-color: black;
+}
+
 .dashboard-container {
   margin: auto;
-  width: 80%;
+  width: 60%;
   margin-top: 6vh;
   padding: 28px;
 }
@@ -225,14 +231,29 @@ html {
   width: 100%;
 }
 
-.boards-container .dashboard-header {
-  margin-left: 10px;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .boards-container .dashboard-sidebar,
 .boards-container .dashboard-body {
   border-radius: 8px;
+}
+
+.boards-container .sidebarContainer .dashboard-avatar {
+  border-radius: 50%;
+  max-width: 100%;
+  width: 200px;
+}
+
+.boards-container .sidebarContainer .dashboard-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 28px;
 }
 
 .boards-container .dashboard-sidebar {
@@ -240,7 +261,7 @@ html {
   box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   font-family: 'Open Sans', sans-serif;
   background-color: white;
-  width: 20%;
+  width: 30%;
   margin: 10px;
   padding: 10px;
 }
@@ -267,11 +288,79 @@ html {
 }
 
 .boards-container .dashboard-body {
+  padding-left: 10px;
   -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   background-color: white;
-  width: 80%;
+  width: 70%;
   margin: 10px;
   padding: 10px;
+}
+
+.boards-container .dashboard-body .dashboard-header hr {
+  width: 95%;
+  background-color: black;
+}
+
+.boards-container .dashboard-body h1 {
+  margin-bottom: 0px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 28px;
+  margin-top: 0px;
+}
+
+.boards-container .dashboard-body .boardsBody {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 28px;
+}
+
+.boards-container .dashboard-body .boardsBody .addBoard {
+  background-color: #5090d4;
+}
+
+.boards-container .dashboard-body .boardsBody .addBoard:hover {
+  background-color: #5090d4;
+}
+
+.boards-container .dashboard-body .boardCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 15px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  margin-right: 15px;
+  border-radius: 12px;
+  background-color: #9b4ea3;
+  width: 170px;
+  height: 110px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.boards-container .dashboard-body .boardCard .fa-plus {
+  margin-top: 12px;
+  color: white;
+}
+
+.boards-container .dashboard-body .boardCard span {
+  color: white;
+}
+
+.boards-container .dashboard-body .boardCard:hover {
+  cursor: pointer;
+  background-color: #7e4085;
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
 }
 /*# sourceMappingURL=App.css.map */

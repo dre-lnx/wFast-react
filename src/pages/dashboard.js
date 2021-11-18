@@ -33,6 +33,15 @@ const Dashboard = () => {
             <div className="boardCard">
               <span>Título da board</span>
             </div>
+            <div className="boardCard">
+              <span>Título da board</span>
+            </div>
+            <div className="boardCard">
+              <span>Título da board</span>
+            </div>
+            <div className="boardCard">
+              <span>Título da board</span>
+            </div>
           </div>
         </div>
       </div>

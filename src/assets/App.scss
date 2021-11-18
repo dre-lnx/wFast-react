@@ -277,7 +277,12 @@ $animation-pattern: 0.5s;
       }
       display: flex;
       flex-direction: row;
-      padding: $box-spacing;
+      padding-top: 28px;
+      padding-bottom: 28px;
+      overflow: scroll;
+      overflow-y: hidden;
+      width: 93%;
+      @include center();
     }
     .boardCard {
       .fa-plus {
@@ -295,7 +300,7 @@ $animation-pattern: 0.5s;
       margin-right: 15px;
       border-radius: 12px;
       background-color: #9b4ea3;
-      width: 170px;
+      min-width: 140px;
       height: 110px;
       transition: 0.4s;
     }

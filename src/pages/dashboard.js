@@ -7,23 +7,24 @@ const Dashboard = () => {
       <div className="boards-container">
         <div className="dashboard-sidebar">
           <div className="sidebarContainer">
-            <div className="dashboard-profile">
-              <img src={logo} className="dashboard-avatar" />
-              <h4>Ricky Astley</h4>
-              <span>ricky69@gmail.com</span>
-            </div>
+            <ul className="sidebar-list">
+              <li>
+                <i class="far fa-user-circle"></i>Perfil
+              </li>
+              <li>
+                <i class="far fa-plus-square"></i>Criar Board
+              </li>
+              <li>
+                <i class="fas fa-sliders-h"></i>Preferências
+              </li>
+            </ul>
           </div>
         </div>
         <div className="dashboard-body">
           <div className="dashboard-header">
             <h1>Boards</h1>
-            <div className="divider"></div>
           </div>
           <div className="boardsBody">
-            <div className="boardCard addBoard">
-              <span>Criar Board</span>
-              <i class="fas fa-plus fa-2x"></i>
-            </div>
             <div className="boardCard">
               <span>Título da board</span>
             </div>

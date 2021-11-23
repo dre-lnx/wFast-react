@@ -190,13 +190,6 @@ $animation-pattern: 0.5s;
 
 /*----------------Dashboard----------------*/
 
-.divider {
-  height: 1px;
-  width: 93%;
-  @include center();
-  background-color: black;
-}
-
 .dashboard-container {
   @include center();
   width: 60%;
@@ -214,21 +207,26 @@ $animation-pattern: 0.5s;
     border-radius: 8px;
   }
 
-  .sidebarContainer {
-    .dashboard-avatar {
-      border-radius: 50%;
-      max-width: 100%;
-      width: 200px;
-    }
-    .dashboard-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: $box-spacing;
-    }
-  }
-
   .dashboard-sidebar {
+    .sidebarContainer {
+      .sidebar-list {
+        padding-left: 0px;
+        li {
+          i {
+            margin-right: 10px;
+          }
+          list-style-type: none;
+          padding: 15px;
+          margin-bottom: 10px;
+          border-radius: 6px;
+          transition: 0.2s;
+        }
+        li:hover {
+          background-color: $border-pattern;
+          cursor: pointer;
+        }
+      }
+    }
     -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     font-family: 'Open Sans', sans-serif;
@@ -236,23 +234,6 @@ $animation-pattern: 0.5s;
     width: 30%;
     margin: 10px;
     padding: 10px;
-  }
-
-  .sidebar-list-container {
-    padding: 0px;
-    li {
-      transition: 0.4s;
-      i {
-        margin-right: 10px;
-      }
-      padding: 20px;
-      list-style-type: none;
-      border-radius: 8px;
-    }
-    li:hover {
-      background-color: #dedede;
-      cursor: pointer;
-    }
   }
 
   .dashboard-body {
@@ -269,12 +250,6 @@ $animation-pattern: 0.5s;
       margin-top: 0px;
     }
     .boardsBody {
-      .addBoard {
-        background-color: #5090d4;
-      }
-      .addBoard:hover {
-        background-color: #5090d4;
-      }
       display: flex;
       flex-direction: row;
       padding-top: 28px;
@@ -300,8 +275,8 @@ $animation-pattern: 0.5s;
       margin-right: 15px;
       border-radius: 12px;
       background-color: #9b4ea3;
-      min-width: 140px;
-      height: 110px;
+      min-width: 150px;
+      height: 80px;
       transition: 0.4s;
     }
 
@@ -331,6 +306,7 @@ $animation-pattern: 0.5s;
   padding: 0 1rem 1rem 1rem;
 
   .status-header {
+    font-weight: bolder;
     width: 250px;
     max-width: 100%;
     padding: 15px;
@@ -340,10 +316,16 @@ $animation-pattern: 0.5s;
   }
 
   .status {
+    background-color: white;
     margin-top: 1rem;
     .task {
+      -webkit-box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
+      box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
       @include flex-x();
       justify-content: space-between;
+    }
+    .task:hover {
+      cursor: pointer;
     }
     .fa-ellipsis-h {
       border-radius: 6px;
@@ -355,7 +337,6 @@ $animation-pattern: 0.5s;
       background-color: #bdbdbd;
     }
     padding: 10px;
-    background-color: #666666;
     border-radius: 8px;
     margin-right: 10px;
     display: flex;
@@ -375,7 +356,7 @@ $animation-pattern: 0.5s;
       border-radius: 6px;
       text-align: center;
       transition: 0.4s;
-      color: white;
+      color: black;
     }
 
     .plus-item:hover {

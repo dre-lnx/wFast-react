@@ -342,6 +342,9 @@ html {
 }
 
 .item-container .status-header {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-weight: bolder;
   width: 250px;
   max-width: 100%;
@@ -422,7 +425,7 @@ html {
   text-align: center;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  color: black;
+  color: #828282;
 }
 
 .item-container .status .plus-item:hover {

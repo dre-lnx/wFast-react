@@ -16,7 +16,7 @@ html {
   background: rgb(146, 150, 203);
   background: radial-gradient(
     circle,
-    rgba(146, 150, 203, 1) 0%,
+    rgb(107, 112, 175) 0%,
     rgba(63, 72, 204, 1) 100%
   );
 }
@@ -49,6 +49,11 @@ $animation-pattern: 0.5s;
 
 @mixin center {
   margin: auto;
+}
+
+@mixin center-x {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*----------------NavBar/*----------------*/
@@ -190,6 +195,7 @@ $animation-pattern: 0.5s;
   font-size: 10pt;
   color: #0275d8;
   text-decoration: none;
+  background-color: white;
 }
 
 /*----------------Dashboard----------------*/
@@ -197,7 +203,7 @@ $animation-pattern: 0.5s;
 .dashboard-container {
   @include center();
   width: 60%;
-  margin-top: 6vh;
+  margin-top: 2vh;
   padding: $box-spacing;
 }
 
@@ -208,7 +214,7 @@ $animation-pattern: 0.5s;
 
   .dashboard-sidebar,
   .dashboard-body {
-    border-radius: 8px;
+    border-radius: 6px;
   }
 
   .dashboard-sidebar {
@@ -224,6 +230,7 @@ $animation-pattern: 0.5s;
           margin-bottom: 10px;
           border-radius: 6px;
           transition: 0.2s;
+          margin-left: 15px;
         }
         li:hover {
           background-color: $border-pattern;
@@ -235,7 +242,7 @@ $animation-pattern: 0.5s;
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    width: 30%;
+    width: 28%;
     margin: 10px;
     padding: 10px;
   }
@@ -256,10 +263,10 @@ $animation-pattern: 0.5s;
     .boardsBody {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       padding-top: 28px;
+      gap: 15px;
       padding-bottom: 28px;
-      overflow: scroll;
-      overflow-y: hidden;
       width: 93%;
       @include center();
     }
@@ -274,12 +281,11 @@ $animation-pattern: 0.5s;
       font-family: 'Open Sans', sans-serif;
       span {
         color: white;
+        padding-left: 10px;
       }
-      text-align: center;
       margin-right: 15px;
-      border-radius: 12px;
       background-color: #9b4ea3;
-      min-width: 150px;
+      width: 29%;
       height: 80px;
       transition: 0.4s;
     }
@@ -294,9 +300,10 @@ $animation-pattern: 0.5s;
     -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     background-color: white;
-    width: 70%;
+    width: 60%;
     margin: 10px;
     padding: 10px;
+    height: 70vh;
   }
 }
 
@@ -304,25 +311,28 @@ $animation-pattern: 0.5s;
 
 .board-container {
   @include flex-y();
-  padding: $box-spacing;
 }
 
 .board-header {
   border-radius: 8px;
   @include flex-x();
-  padding-left: $box-spacing;
+  justify-content: space-around;
 }
 
 .fa-sort-down {
-  color: white;
+  color: black;
 }
 
 .board-title {
-  color: white;
+  justify-content: space-around;
+  color: black;
+  background-color: white;
   gap: 10px;
   transition: $animation-pattern;
   padding: 8px;
-  border-radius: 8px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 250px;
   @include flex-x();
   h3 {
     margin: 0px;
@@ -331,11 +341,11 @@ $animation-pattern: 0.5s;
 
 .board-title:hover {
   cursor: pointer;
-  background-color: #666666;
 }
 
 .item-container {
   justify-content: space-between;
+  @include center-x();
   @include flex-x();
   width: 50%;
   margin-top: 3vh;
@@ -347,26 +357,23 @@ $animation-pattern: 0.5s;
     width: 250px;
     max-width: 100%;
     padding: 15px;
-    background-color: white;
     border-radius: 6px;
     @include flex-x();
   }
 
   .status {
-    background-color: white;
+    background-color: #e8e8e8;
     margin-top: 1rem;
     .task {
+      border: 1px solid white;
       transition: 0.2s;
-      -webkit-box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
-      box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
       @include flex-x();
       justify-content: space-between;
     }
     .task:hover {
-      -webkit-box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.62);
-      box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.62);
       transform: scale(1.1);
       cursor: pointer;
+      border: 1px solid #672c9c;
     }
     .fa-ellipsis-h {
       border-radius: 6px;

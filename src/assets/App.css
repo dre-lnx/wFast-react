@@ -10,7 +10,7 @@
 html {
   height: 100vh;
   background: #9296cb;
-  background: radial-gradient(circle, #9296cb 0%, #3f48cc 100%);
+  background: radial-gradient(circle, #6b70af 0%, #3f48cc 100%);
 }
 
 /*----------------Variables----------------*/
@@ -196,13 +196,14 @@ html {
   font-size: 10pt;
   color: #0275d8;
   text-decoration: none;
+  background-color: white;
 }
 
 /*----------------Dashboard----------------*/
 .dashboard-container {
   margin: auto;
   width: 60%;
-  margin-top: 6vh;
+  margin-top: 2vh;
   padding: 28px;
 }
 
@@ -219,7 +220,7 @@ html {
 
 .boards-container .dashboard-sidebar,
 .boards-container .dashboard-body {
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .boards-container .dashboard-sidebar {
@@ -227,7 +228,7 @@ html {
   box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   font-family: 'Open Sans', sans-serif;
   background-color: white;
-  width: 30%;
+  width: 28%;
   margin: 10px;
   padding: 10px;
 }
@@ -243,6 +244,7 @@ html {
   border-radius: 6px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  margin-left: 15px;
 }
 
 .boards-container .dashboard-sidebar .sidebarContainer .sidebar-list li i {
@@ -259,9 +261,10 @@ html {
   -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
   background-color: white;
-  width: 70%;
+  width: 60%;
   margin: 10px;
   padding: 10px;
+  height: 70vh;
 }
 
 .boards-container .dashboard-body .dashboard-header hr {
@@ -284,10 +287,11 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding-top: 28px;
+  gap: 15px;
   padding-bottom: 28px;
-  overflow: scroll;
-  overflow-y: hidden;
   width: 93%;
   margin: auto;
 }
@@ -302,11 +306,9 @@ html {
           flex-direction: column;
   padding-top: 15px;
   font-family: 'Open Sans', sans-serif;
-  text-align: center;
   margin-right: 15px;
-  border-radius: 12px;
   background-color: #9b4ea3;
-  min-width: 150px;
+  width: 29%;
   height: 80px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -319,6 +321,7 @@ html {
 
 .boards-container .dashboard-body .boardCard span {
   color: white;
+  padding-left: 10px;
 }
 
 .boards-container .dashboard-body .boardCard:hover {
@@ -337,7 +340,6 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 28px;
 }
 
 .board-header {
@@ -349,20 +351,26 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding-left: 28px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .fa-sort-down {
-  color: white;
+  color: black;
 }
 
 .board-title {
-  color: white;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: black;
+  background-color: white;
   gap: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 8px;
-  border-radius: 8px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  width: 250px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -378,13 +386,14 @@ html {
 
 .board-title:hover {
   cursor: pointer;
-  background-color: #666666;
 }
 
 .item-container {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -405,7 +414,6 @@ html {
   width: 250px;
   max-width: 100%;
   padding: 15px;
-  background-color: white;
   border-radius: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -417,7 +425,7 @@ html {
 }
 
 .item-container .status {
-  background-color: white;
+  background-color: #e8e8e8;
   margin-top: 1rem;
   padding: 10px;
   border-radius: 8px;
@@ -435,10 +443,9 @@ html {
 }
 
 .item-container .status .task {
+  border: 1px solid white;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  -webkit-box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
-  box-shadow: 0px 2px 19px 5px rgba(0, 0, 0, 0.28);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -452,11 +459,10 @@ html {
 }
 
 .item-container .status .task:hover {
-  -webkit-box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.62);
-  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.62);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   cursor: pointer;
+  border: 1px solid #672c9c;
 }
 
 .item-container .status .fa-ellipsis-h {

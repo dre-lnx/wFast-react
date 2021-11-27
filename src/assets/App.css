@@ -449,10 +449,10 @@ html {
 
 .status .plus-item {
   text-align: center;
-  margin-top: 15px;
   background-color: white;
   min-height: 50px;
   border-radius: 6px;
+  margin-top: 5px;
 }
 
 .status .plus-item .fa-plus-circle {

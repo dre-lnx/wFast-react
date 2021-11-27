@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
@@ -63,6 +63,16 @@ const onDragEnd = (result, columns, setColumns) => {
 const Item = () => {
   const [columns, setColumns] = useState(columnsFromBackEnd)
 
+  const [dropDown, setDropdown] = useState(false)
+
+  const toggle = (val) => {
+    if (val === true) {
+      setDropdown(false)
+    } else {
+      setDropdown(true)
+    }
+  }
+
   return (
     <div className="item-container">
       <DragDropContext
@@ -74,7 +84,22 @@ const Item = () => {
               <div className="status">
                 <div className="status-header">
                   <span>{column.name}</span>
-                  <i class="fas fa-ellipsis-h"></i>
+                  <i
+                    class="fas fa-ellipsis-h"
+                    onClick={() => toggle(dropDown)}
+                  ></i>
+                  {dropDown === true && (
+                    <div className="dropdown-content">
+                      <ul>
+                        <li>
+                          <i class="fas fa-plus"></i>Create task
+                        </li>
+                        <li>
+                          <i class="far fa-trash-alt"></i>Delete All tasks
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 <Droppable droppableId={id} key={id}>
                   {(provided, snapshot) => {
@@ -116,9 +141,6 @@ const Item = () => {
                           )
                         })}
                         {provided.placeholder}
-                        <div className="plus-item">
-                          <i class="fas fa-plus-circle"></i>
-                        </div>
                       </div>
                     )
                   }}

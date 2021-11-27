@@ -86,6 +86,8 @@ const Item = () => {
                   <span>{column.name}</span>
                   <i
                     class="fas fa-ellipsis-h"
+                    status={column.name}
+                    id={column.name}
                     onClick={() => toggle(dropDown)}
                   ></i>
                   {dropDown === true && (

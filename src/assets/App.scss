@@ -201,6 +201,7 @@ $animation-pattern: 0.5s;
 /*----------------Dashboard----------------*/
 
 .dashboard-container {
+  @include flex-x();
   @include center();
   width: 60%;
   margin-top: 2vh;
@@ -230,7 +231,6 @@ $animation-pattern: 0.5s;
           margin-bottom: 10px;
           border-radius: 6px;
           transition: 0.2s;
-          margin-left: 15px;
         }
         li:hover {
           background-color: $border-pattern;
@@ -242,7 +242,7 @@ $animation-pattern: 0.5s;
     box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    width: 28%;
+    width: 25%;
     margin: 10px;
     padding: 10px;
   }
@@ -285,6 +285,7 @@ $animation-pattern: 0.5s;
       }
       margin-right: 15px;
       background-color: #9b4ea3;
+      border-radius: 6px;
       width: 29%;
       height: 80px;
       transition: 0.4s;
@@ -293,7 +294,6 @@ $animation-pattern: 0.5s;
     .boardCard:hover {
       cursor: pointer;
       background-color: #7e4085;
-      transform: scale(1.06);
     }
 
     padding-left: 10px;
@@ -310,7 +310,7 @@ $animation-pattern: 0.5s;
 /*----------------Items----------------*/
 
 .board-container {
-  @include flex-y();
+  @include center-x();
 }
 
 .board-header {
@@ -324,12 +324,12 @@ $animation-pattern: 0.5s;
 }
 
 .board-title {
-  justify-content: space-around;
+  justify-content: space-between;
   color: black;
   background-color: white;
   gap: 10px;
   transition: $animation-pattern;
-  padding: 8px;
+  padding: 12px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   width: 250px;
@@ -352,64 +352,41 @@ $animation-pattern: 0.5s;
   padding: 0 1rem 1rem 1rem;
 
   .status-header {
+    @include flex-x();
     justify-content: space-between;
     font-weight: bolder;
     width: 250px;
     max-width: 100%;
     padding: 15px;
     border-radius: 6px;
-    @include flex-x();
   }
+}
 
-  .status {
-    background-color: #e8e8e8;
-    margin-top: 1rem;
-    .task {
-      border: 1px solid white;
-      transition: 0.2s;
-      @include flex-x();
-      justify-content: space-between;
-    }
-    .task:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-      border: 1px solid #672c9c;
-    }
-    .fa-ellipsis-h {
-      border-radius: 6px;
-      padding: 6px;
-      transition: 0.2s;
-    }
-    .fa-ellipsis-h:hover {
-      cursor: pointer;
-      background-color: #bdbdbd;
-    }
-    padding: 10px;
-    border-radius: 8px;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .status-body {
-      padding: 15px;
-      width: 250px;
+.status {
+  border-radius: 6px;
+  @include flex-y();
+  background-color: white;
+  .task {
+    background-color: white;
+    color: black;
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 6px;
+    min-height: 50px;
+    margin-top: 10px;
+  }
+  .plus-item {
+    .fa-plus-circle {
       margin-top: 15px;
-      background-color: white;
-      border-radius: 6px;
     }
-    .plus-item {
-      width: 250px;
-      margin-top: 15px;
-      background-color: transparent;
-      border-radius: 6px;
-      text-align: center;
-      transition: 0.4s;
-      color: #828282;
-    }
-
-    .plus-item:hover {
-      cursor: pointer;
-    }
+    text-align: center;
+    margin-top: 15px;
+    background-color: white;
+    min-height: 50px;
+    border-radius: 6px;
+  }
+  .plus-item:hover {
+    cursor: pointer;
   }
 }
 

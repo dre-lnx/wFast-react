@@ -1,46 +1,132 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
+import { v4 as uuid } from 'uuid'
+
+const itemsFromBackEnd = [
+  { id: uuid(), content: 'First Task' },
+  { id: uuid(), content: 'Second Task ' },
+]
+
+const columnsFromBackEnd = {
+  [uuid()]: {
+    name: 'toDo',
+    items: itemsFromBackEnd,
+  },
+  [uuid()]: {
+    name: 'doing',
+    items: [],
+  },
+  [uuid()]: {
+    name: 'done',
+    items: [],
+  },
+}
+
+const onDragEnd = (result, columns, setColumns) => {
+  if (!result.destination) return
+  const { source, destination } = result
+  if (source.droppableId !== destination.droppableId) {
+    const sourceColumn = columns[source.droppableId]
+    const destColumn = columns[destination.droppableId]
+    const sourceItems = [...sourceColumn.items]
+    const destItems = [...destColumn.items]
+    const [removed] = sourceItems.splice(source.index, 1)
+    destItems.splice(destination.index, 0, removed)
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems,
+      },
+      [destination.droppableId]: {
+        ...destColumn,
+        items: destItems,
+      },
+    })
+  } else {
+    const column = columns[source.droppableId]
+    const copiedItems = [...column.items]
+    const [removed] = copiedItems.splice(source.index, 1)
+    copiedItems.splice(destination.index, 0, removed)
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems,
+      },
+    })
+  }
+}
 
 const Item = () => {
+  const [columns, setColumns] = useState(columnsFromBackEnd)
+
   return (
-    <div className="board-container">
-      <div className="board-header">
-        <div className="board-title">
-          <i class="fas fa-sort-down"></i>
-          <h3>Título da board</h3>
-        </div>
-      </div>
-      <div className="item-container">
-        <div className="status toDo">
-          <div className="status-header">
-            <span>To do</span>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <div className="status-body task">asd</div>
-          <div className="plus-item">
-            <i class="fas fa-plus-circle"></i>
-          </div>
-        </div>
-        <div className="status doing">
-          <div className="status-header">
-            <span>Doing</span>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <div className="status-body task">asd</div>
-          <div className="plus-item">
-            <i class="fas fa-plus-circle"></i>
-          </div>
-        </div>
-        <div className="status done">
-          <div className="status-header">
-            <span>Done</span>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <div className="status-body task">asd</div>
-          <div className="plus-item">
-            <i class="fas fa-plus-circle"></i>
-          </div>
-        </div>
-      </div>
+    <div className="item-container">
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+      >
+        {Object.entries(columns).map(([id, column]) => {
+          return (
+            <>
+              <div className="status">
+                <div className="status-header">
+                  <span>{column.name}</span>
+                  <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <Droppable droppableId={id} key={id}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          background: snapshot.isDraggingOver
+                            ? 'lightblue'
+                            : 'lightgrey',
+                          padding: 4,
+                          width: 250,
+                          alignSelf: 'center',
+                          minHeight: 500,
+                        }}
+                      >
+                        {column.items.map((item, index) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    className="task"
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    {item.content}
+                                  </div>
+                                )
+                              }}
+                            </Draggable>
+                          )
+                        })}
+                        {provided.placeholder}
+                        <div className="plus-item">
+                          <i class="fas fa-plus-circle"></i>
+                        </div>
+                      </div>
+                    )
+                  }}
+                </Droppable>
+              </div>
+            </>
+          )
+        })}
+      </DragDropContext>
     </div>
   )
 }

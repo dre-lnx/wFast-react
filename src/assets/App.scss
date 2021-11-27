@@ -365,7 +365,7 @@ $animation-pattern: 0.5s;
 .status {
   border-radius: 6px;
   @include flex-y();
-  background-color: white;
+  background-color: lightgrey;
   .task {
     background-color: white;
     color: black;

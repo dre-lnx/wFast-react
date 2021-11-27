@@ -86,6 +86,7 @@ const Item = () => {
                           background: snapshot.isDraggingOver
                             ? 'lightblue'
                             : 'lightgrey',
+                          borderRadius: 8,
                           padding: 4,
                           width: 250,
                           alignSelf: 'center',

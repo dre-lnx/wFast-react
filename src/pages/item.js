@@ -94,7 +94,6 @@ const Item = () => {
                     id={column.name}
                     onClick={() =>
                       toggle(dropDown, column.name).then((response) => {
-                        console.log(response)
                         setStatus(response)
                       })
                     }

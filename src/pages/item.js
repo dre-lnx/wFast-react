@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+
+import BasicModal from '../components/modal'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
@@ -101,9 +103,7 @@ const Item = () => {
                   {column.name === status && dropDown === true && (
                     <div className="dropdown-content">
                       <ul>
-                        <li>
-                          <i class="fas fa-plus"></i>Create task
-                        </li>
+                        <BasicModal></BasicModal>
                         <li>
                           <i class="far fa-trash-alt"></i>Delete All tasks
                         </li>

@@ -65,11 +65,15 @@ const Item = () => {
 
   const [dropDown, setDropdown] = useState(false)
 
-  const toggle = (val) => {
+  const [status, setStatus] = useState(null)
+
+  const toggle = async (val, status) => {
     if (val === true) {
-      setDropdown(false)
+      await setDropdown(false)
+      return status
     } else {
-      setDropdown(true)
+      await setDropdown(true)
+      return status
     }
   }
 
@@ -88,9 +92,14 @@ const Item = () => {
                     class="fas fa-ellipsis-h"
                     status={column.name}
                     id={column.name}
-                    onClick={() => toggle(dropDown)}
+                    onClick={() =>
+                      toggle(dropDown, column.name).then((response) => {
+                        console.log(response)
+                        setStatus(response)
+                      })
+                    }
                   ></i>
-                  {dropDown === true && (
+                  {column.name === status && dropDown === true && (
                     <div className="dropdown-content">
                       <ul>
                         <li>

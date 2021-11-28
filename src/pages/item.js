@@ -1,13 +1,37 @@
 import React, { useState } from 'react'
-
-import BasicModal from '../components/modal'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Modal from '@mui/material/Modal'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import { v4 as uuid } from 'uuid'
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+}
+
 const itemsFromBackEnd = [
   { id: uuid(), content: 'First Task' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Second Task ' },
   { id: uuid(), content: 'Second Task ' },
 ]
 
@@ -63,6 +87,9 @@ const onDragEnd = (result, columns, setColumns) => {
 }
 
 const Item = () => {
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   const [columns, setColumns] = useState(columnsFromBackEnd)
 
   const [dropDown, setDropdown] = useState(false)
@@ -103,7 +130,9 @@ const Item = () => {
                   {column.name === status && dropDown === true && (
                     <div className="dropdown-content">
                       <ul>
-                        <BasicModal></BasicModal>
+                        <li>
+                          <i class="fas fa-plus"></i>Create task
+                        </li>
                         <li>
                           <i class="far fa-trash-alt"></i>Delete All tasks
                         </li>
@@ -126,6 +155,9 @@ const Item = () => {
                           width: 250,
                           alignSelf: 'center',
                           minHeight: 500,
+                          overflow: 'auto',
+                          overflowX: 'hidden',
+                          maxHeight: 500,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -137,13 +169,39 @@ const Item = () => {
                             >
                               {(provided, snapshot) => {
                                 return (
-                                  <div
-                                    className="task"
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                  >
-                                    {item.content}
+                                  <div>
+                                    <div
+                                      onClick={handleOpen}
+                                      className="task"
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                    >
+                                      {item.content}
+                                    </div>
+                                    <Modal
+                                      open={open}
+                                      onClose={handleClose}
+                                      aria-labelledby="modal-modal-title"
+                                      aria-describedby="modal-modal-description"
+                                    >
+                                      <Box sx={style}>
+                                        <Typography
+                                          id="modal-modal-title"
+                                          variant="h6"
+                                          component="h2"
+                                        >
+                                          Editando uma task
+                                        </Typography>
+                                        <Typography
+                                          id="modal-modal-description"
+                                          sx={{ mt: 2 }}
+                                        >
+                                          Isso definitivamente ainda não ta
+                                          funcionando
+                                        </Typography>
+                                      </Box>
+                                    </Modal>
                                   </div>
                                 )
                               }}

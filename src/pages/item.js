@@ -14,6 +14,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 }
@@ -21,18 +22,8 @@ const style = {
 const itemsFromBackEnd = [
   { id: uuid(), content: 'First Task' },
   { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Second Task ' },
+  { id: uuid(), content: 'Third Task ' },
+  { id: uuid(), content: 'Fourth Task ' },
 ]
 
 const columnsFromBackEnd = {
@@ -86,6 +77,11 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 }
 
+const createTask = () => {
+  itemsFromBackEnd.push({ id: uuid(), content: 'Nova Tarefa' })
+  console.table(itemsFromBackEnd)
+}
+
 const Item = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -130,7 +126,7 @@ const Item = () => {
                   {column.name === status && dropDown === true && (
                     <div className="dropdown-content">
                       <ul>
-                        <li>
+                        <li onClick={() => createTask()}>
                           <i class="fas fa-plus"></i>Create task
                         </li>
                         <li>

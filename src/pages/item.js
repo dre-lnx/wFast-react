@@ -126,7 +126,14 @@ const Item = () => {
                   {column.name === status && dropDown === true && (
                     <div className="dropdown-content">
                       <ul>
-                        <li onClick={() => createTask()}>
+                        <li
+                          onClick={() => {
+                            createTask()
+                            toggle(dropDown, column.name).then((response) => {
+                              setStatus(response)
+                            })
+                          }}
+                        >
                           <i class="fas fa-plus"></i>Create task
                         </li>
                         <li>

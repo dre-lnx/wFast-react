@@ -27,15 +27,15 @@ const itemsFromBackEnd = [
 ]
 
 const columnsFromBackEnd = {
-  [uuid()]: {
+  0: {
     name: 'toDo',
     items: itemsFromBackEnd,
   },
-  [uuid()]: {
+  1: {
     name: 'doing',
     items: [],
   },
-  [uuid()]: {
+  2: {
     name: 'done',
     items: [],
   },
@@ -77,11 +77,6 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 }
 
-const createTask = () => {
-  itemsFromBackEnd.push({ id: uuid(), content: 'Nova Tarefa' })
-  console.table(itemsFromBackEnd)
-}
-
 const Item = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -99,6 +94,20 @@ const Item = () => {
     } else {
       await setDropdown(true)
       return status
+    }
+  }
+
+  const createTask = (column) => {
+    console.log(columnsFromBackEnd)
+    console.log(column)
+    if (column === 'toDo') {
+      columnsFromBackEnd[0].items.push({ id: uuid(), content: 'First Task' })
+    }
+    if (column === 'doing') {
+      columnsFromBackEnd[1].items.push({ id: uuid(), content: 'First Task' })
+    }
+    if (column === 'done') {
+      columnsFromBackEnd[2].items.push({ id: uuid(), content: 'First Task' })
     }
   }
 
@@ -128,7 +137,7 @@ const Item = () => {
                       <ul>
                         <li
                           onClick={() => {
-                            createTask()
+                            createTask(column.name)
                             toggle(dropDown, column.name).then((response) => {
                               setStatus(response)
                             })

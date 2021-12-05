@@ -179,7 +179,7 @@ textarea {
   resize: none;
   border: 1px solid #d4d4d4;
   border-radius: 8px;
-  width: 95%;
+  width: 98%;
   height: 70px;
   outline: none;
   padding: 5px;
@@ -585,33 +585,20 @@ textarea {
 }
 
 .profile-container .user-frame {
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
   height: 350px;
-  width: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-.profile-container .user-frame .user-data {
-  max-width: 200px;
-  padding-top: 15px;
-  margin: auto;
-}
-
-.profile-container .user-frame .user-data input,
-.profile-container .user-frame .user-data button {
-  text-align: center;
-}
-
-.profile-container .profile-frame {
-  margin-left: auto;
-  margin-right: auto;
+.profile-container .user-frame .user-highlights {
   width: 100%;
-  max-width: 600px;
-  background-color: white;
-  border-radius: 8px;
-  padding: 28px;
-  height: 60vh;
+  max-width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -619,10 +606,48 @@ textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
 }
 
-.profile-container .profile-frame .user-data {
-  text-align: center;
+.profile-container .user-frame .user-data {
+  width: 100%;
+  max-width: 600px;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.profile-container .user-frame .user-data .inline-fields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.profile-container .user-frame .user-data .inline-fields input {
+  width: 46%;
+}
+
+.profile-container .profile-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 28px;
+  height: 40vh;
 }
 
 .fa-bars {

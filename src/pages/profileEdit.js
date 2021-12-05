@@ -6,20 +6,16 @@ const ProfileEdit = () => {
     <div className="profile-container">
       <div className="profile-frame">
         <div className="user-frame">
-          <img src={avatar} alt="foto de perfil" />
+          <div className="user-highlights">
+            <img src={avatar} alt="foto de perfil" />
+            <h3>Ricky Astley</h3>
+            <span>ricky@email.com</span>
+          </div>
           <div className="user-data form-y-layout">
-            <input
-              type="text"
-              name="nome"
-              value="Ricky Astley"
-              placeholder="nome"
-            />
-            <input
-              type="text"
-              name="email"
-              value="ricky@email.com"
-              placeholder="email"
-            />
+            <div className="inline-fields">
+              <input type="text" name="nome" placeholder="nome" />
+              <input type="text" name="email" placeholder="email" />
+            </div>
             <textarea placeholder="Descrição"></textarea>
             <button className="form-link">Trocar senha de acesso</button>
             <input

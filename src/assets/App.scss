@@ -189,7 +189,7 @@ textarea {
   resize: none;
   border: 1px solid $border-pattern;
   border-radius: 8px;
-  width: 95%;
+  width: 98%;
   height: 70px;
   outline: none;
   padding: 5px;
@@ -494,32 +494,37 @@ textarea {
     cursor: pointer;
   }
   .user-frame {
-    @include center-x();
     width: 100%;
     height: 350px;
-    width: 350px;
+    @include flex-x();
+    .user-highlights {
+      width: 100%;
+      max-width: 400px;
+      @include flex-y();
+      justify-content: space-around;
+      text-align: center;
+    }
     .user-data {
-      max-width: 200px;
+      width: 100%;
+      max-width: 600px;
       padding-top: 15px;
       @include center();
-      input,
-      button {
-        text-align: center;
+      .inline-fields {
+        @include flex-x();
+        justify-content: space-between;
+        input {
+          width: 46%;
+        }
       }
     }
   }
   .profile-frame {
-    @include center-x();
+    @include flex-x();
     width: 100%;
-    max-width: 600px;
     background-color: white;
     border-radius: 8px;
     padding: $box-spacing;
-    height: 60vh;
-    @include flex-y();
-    .user-data {
-      text-align: center;
-    }
+    height: 40vh;
   }
 }
 

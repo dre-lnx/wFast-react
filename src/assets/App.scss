@@ -468,18 +468,28 @@ $animation-pattern: 0.5s;
   margin-top: 2vh;
   padding: $box-spacing;
   img {
+    display: flex;
     width: 100%;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 250px;
+    max-height: 250px;
     border-radius: 50%;
+    @include center();
+    align-self: center;
   }
-  .pic-frame {
+  .user-frame {
     @include center-x();
     width: 100%;
     height: 350px;
     width: 350px;
-    border-radius: 50%;
+  }
+  .profile-frame {
     background-color: white;
+    border-radius: 8px;
+    padding: $box-spacing;
+    @include flex-y();
+    .user-data {
+      text-align: center;
+    }
   }
 }
 

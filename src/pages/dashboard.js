@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/rick.jpg'
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
   return (
@@ -8,9 +8,11 @@ const Dashboard = () => {
         <div className="dashboard-sidebar">
           <div className="sidebarContainer">
             <ul className="sidebar-list">
-              <li>
-                <i class="far fa-user-circle"></i>Perfil
-              </li>
+              <Link to="/profile">
+                <li>
+                  <i class="far fa-user-circle"></i>Perfil
+                </li>
+              </Link>
               <li>
                 <i class="far fa-plus-square"></i>Criar Board
               </li>

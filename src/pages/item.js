@@ -82,6 +82,7 @@ const Item = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [columns, setColumns] = useState(columnsFromBackEnd)
+  const [statuses, setStatuses] = useState(['toDo', 'doing', 'done'])
 
   const [dropDown, setDropdown] = useState(false)
 
@@ -98,17 +99,20 @@ const Item = () => {
   }
 
   const createTask = (column) => {
-    console.log(columnsFromBackEnd)
-    console.log(column)
-    if (column === 'toDo') {
-      columnsFromBackEnd[0].items.push({ id: uuid(), content: 'First Task' })
-    }
-    if (column === 'doing') {
-      columnsFromBackEnd[1].items.push({ id: uuid(), content: 'First Task' })
-    }
-    if (column === 'done') {
-      columnsFromBackEnd[2].items.push({ id: uuid(), content: 'First Task' })
-    }
+    statuses.forEach((stts, index) => {
+      if (column === stts) {
+        columns[index].items.push({ id: uuid(), content: 'New Task' })
+      }
+    })
+  }
+
+  const deleteAllTasks = (column) => {
+    statuses.forEach((stts, index) => {
+      if (column === stts) {
+        columns[index].items.length = 0
+        console.log(columns[index].items)
+      }
+    })
   }
 
   return (
@@ -145,7 +149,14 @@ const Item = () => {
                         >
                           <i class="fas fa-plus"></i>Create task
                         </li>
-                        <li>
+                        <li
+                          onClick={() => {
+                            deleteAllTasks(column.name)
+                            toggle(dropDown, column.name).then((response) => {
+                              setStatus(response)
+                            })
+                          }}
+                        >
                           <i class="far fa-trash-alt"></i>Delete All tasks
                         </li>
                       </ul>

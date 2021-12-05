@@ -8,6 +8,7 @@ import avatar from '../assets/rick.jpg'
 const NavBar = () => {
   return (
     <div className="nav-container">
+      <i class="fas fa-bars fa-2x"></i>
       <nav className="a-list">
         <div>
           <img src={logo} alt="logo wfast" className="nav-logo" />

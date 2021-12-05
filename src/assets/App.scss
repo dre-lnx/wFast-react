@@ -489,6 +489,10 @@ textarea {
     @include center();
     align-self: center;
   }
+  img:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
   .user-frame {
     @include center-x();
     width: 100%;
@@ -496,6 +500,7 @@ textarea {
     width: 350px;
     .user-data {
       max-width: 200px;
+      padding-top: 15px;
       @include center();
       input,
       button {
@@ -510,7 +515,7 @@ textarea {
     background-color: white;
     border-radius: 8px;
     padding: $box-spacing;
-    height: 53vh;
+    height: 60vh;
     @include flex-y();
     .user-data {
       text-align: center;
@@ -518,14 +523,34 @@ textarea {
   }
 }
 
+.fa-bars {
+  display: none;
+}
+
 /*-----------------Mobile-----------------*/
 
 @media only screen and (max-width: 640px) {
+  .fa-bars {
+    display: block;
+    margin-left: 15px;
+    margin-top: 7px;
+    color: rgba(63, 72, 204, 1);
+  }
   html {
     background: white;
   }
   .login-container-sm {
     margin-top: 10vh;
     box-shadow: none;
+  }
+  .a-list {
+    ul {
+      display: none;
+    }
+    div {
+    }
+  }
+  .avatar-div {
+    display: none;
   }
 }

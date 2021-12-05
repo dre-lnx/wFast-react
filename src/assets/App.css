@@ -175,6 +175,18 @@ html {
 }
 
 /*----------------FormFrame----------------*/
+textarea {
+  resize: none;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  width: 95%;
+  height: 70px;
+  outline: none;
+  padding: 5px;
+  -webkit-box-shadow: -2px 3px 16px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 3px 16px 5px rgba(0, 0, 0, 0.15);
+}
+
 .login-container-sm {
   background-color: white;
   -webkit-box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
@@ -518,6 +530,8 @@ html {
   border-radius: 6px;
   min-height: 50px;
   margin-top: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .status .plus-item {
@@ -557,8 +571,8 @@ html {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 200px;
+  max-height: 200px;
   border-radius: 50%;
   margin: auto;
   -ms-flex-item-align: center;
@@ -573,10 +587,25 @@ html {
   width: 350px;
 }
 
+.profile-container .user-frame .user-data {
+  max-width: 200px;
+  margin: auto;
+}
+
+.profile-container .user-frame .user-data input,
+.profile-container .user-frame .user-data button {
+  text-align: center;
+}
+
 .profile-container .profile-frame {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 600px;
   background-color: white;
   border-radius: 8px;
   padding: 28px;
+  height: 53vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

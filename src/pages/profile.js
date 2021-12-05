@@ -1,35 +1,14 @@
 import React from 'react'
-import avatar from '../assets/rick.jpg'
+import { Link } from 'react-router-dom'
 
 const Profile = () => {
   return (
-    <div className="profile-container">
-      <div className="profile-frame">
-        <div className="user-frame">
-          <img src={avatar} alt="foto de perfil" />
-          <div className="user-data">
-            <h2>Ricky Astley</h2>
-            <span>ricky@email.com</span>
-          </div>
-        </div>
-        <div className="edit-user-form form-y-layout">
-          <h3>Edição de Dados Pessoais</h3>
-          <input
-            type="text"
-            name="nome"
-            value="Ricky Astley"
-            placeholder="nome"
-          />
-          <input
-            type="text"
-            name="email"
-            value="ricky@email.com"
-            placeholder="email"
-          />
-          <button className="form-link">Esqueci minha senha</button>
-        </div>
-      </div>
-    </div>
+    <>
+      <div>Profile review</div>
+      <Link to="profile/edit">
+        <div>Editar perfil</div>
+      </Link>
+    </>
   )
 }
 

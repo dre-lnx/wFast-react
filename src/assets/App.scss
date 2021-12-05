@@ -185,6 +185,18 @@ $animation-pattern: 0.5s;
 
 /*----------------FormFrame----------------*/
 
+textarea {
+  resize: none;
+  border: 1px solid $border-pattern;
+  border-radius: 8px;
+  width: 95%;
+  height: 70px;
+  outline: none;
+  padding: 5px;
+  -webkit-box-shadow: -2px 3px 16px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 3px 16px 5px rgba(0, 0, 0, 0.15);
+}
+
 .login-container-sm {
   background-color: white;
   box-shadow: -1px 10px 11px 6px rgba(0, 0, 0, 0.15);
@@ -442,6 +454,7 @@ $animation-pattern: 0.5s;
     border-radius: 6px;
     min-height: 50px;
     margin-top: 10px;
+    transition: $animation-pattern;
   }
   .plus-item {
     .fa-plus-circle {
@@ -470,8 +483,8 @@ $animation-pattern: 0.5s;
   img {
     display: flex;
     width: 100%;
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 50%;
     @include center();
     align-self: center;
@@ -481,11 +494,23 @@ $animation-pattern: 0.5s;
     width: 100%;
     height: 350px;
     width: 350px;
+    .user-data {
+      max-width: 200px;
+      @include center();
+      input,
+      button {
+        text-align: center;
+      }
+    }
   }
   .profile-frame {
+    @include center-x();
+    width: 100%;
+    max-width: 600px;
     background-color: white;
     border-radius: 8px;
     padding: $box-spacing;
+    height: 53vh;
     @include flex-y();
     .user-data {
       text-align: center;

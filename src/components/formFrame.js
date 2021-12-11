@@ -19,12 +19,32 @@ const FormFrame = () => {
         <div className="form-y-layout" id="signIn-form">
           <div className="header">
             <img src={logo} alt="wfast logo" className="formLogo" />
+            {form === true && <p>Cadastro wFast</p>}
+            {form === false && <p>Login wFast</p>}
           </div>
           {form === false && (
             <>
-              <input type="text" placeholder="E-mail ou usuário" />
-              <input type="password" placeholder="Senha" />
-              <input type="submit" value="Entrar" />
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                />
+                <label for="floatingInput">Endereço de E-mail</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Senha</label>
+              </div>
+              <button type="button" class="btn btn-primary">
+                Fazer Login
+              </button>
               <button
                 className="form-link"
                 onClick={() => {
@@ -38,11 +58,46 @@ const FormFrame = () => {
           )}
         </div>
         {form === true && (
-          <div className="form-y-layout" id="signUp-form">
-            <input type="text" placeholder="Nome de usuário" />
-            <input type="text" placeholder="E-mail" />
-            <input type="password" placeholder="Senha" />
-            <input type="submit" value="Criar Conta" />
+          <div className="form-y-layout input-group" id="signUp-form">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Name"
+              />
+              <label for="floatingInput">Nome</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Surname"
+              />
+              <label for="floatingInput">Sobrenome</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Email"
+              />
+              <label for="floatingInput">Endereço de E-mail</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Senha</label>
+            </div>
+            <button type="button" class="btn btn-success">
+              Criar Conta
+            </button>
             <button
               className="form-link"
               onClick={() => {

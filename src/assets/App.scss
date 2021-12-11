@@ -12,8 +12,6 @@
 
 html {
   height: 100vh;
-
-  background: white;
 }
 
 /*----------------Variables----------------*/
@@ -26,11 +24,18 @@ $box-spacing: 28px;
 
 $border-pattern: #d4d4d4;
 
+$logo-color: #004aad;
+
 /*---Animations---*/
 
 $animation-pattern: 0.5s;
 
 /*/*----------------Mixins----------------*/
+
+@mixin box-shadow {
+  -webkit-box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
+  box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
+}
 
 @mixin flex-y {
   display: flex;
@@ -185,7 +190,7 @@ $animation-pattern: 0.5s;
   -webkit-box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
   box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   width: 100%;
   max-width: 450px;
   padding: $box-spacing;
@@ -248,6 +253,7 @@ $animation-pattern: 0.5s;
   .dashboard-sidebar,
   .dashboard-body {
     border-radius: 6px;
+    @include box-shadow();
   }
 
   .dashboard-sidebar {
@@ -270,8 +276,6 @@ $animation-pattern: 0.5s;
         }
       }
     }
-    -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
-    box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     font-family: 'Open Sans', sans-serif;
     background-color: white;
     width: 25%;
@@ -329,8 +333,6 @@ $animation-pattern: 0.5s;
     }
 
     padding-left: 10px;
-    -webkit-box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
-    box-shadow: 0px 2px 32px 10px rgba(0, 0, 0, 0.29);
     background-color: white;
     width: 60%;
     margin: 10px;
@@ -494,6 +496,43 @@ $animation-pattern: 0.5s;
 }
 
 /*-----------------Mobile-----------------*/
+
+@media only screen and (max-width: 1616px) {
+  .boardCard {
+    width: 40% !important;
+  }
+}
+
+@media only screen and (max-width: 1157px) {
+  .dashboard-body,
+  .dashboard-sidebar {
+    box-shadow: none !important;
+    width: 100% !important;
+    h1 {
+      padding: 0px !important;
+    }
+  }
+  .boardsBody {
+    .boardCard {
+      width: 100% !important;
+    }
+  }
+  .boards-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0px !important;
+  }
+
+  .dashboard-container {
+    width: 90%;
+  }
+
+  .sidebar-list {
+    li {
+      border: 1px solid $border-pattern;
+    }
+  }
+}
 
 @media only screen and (max-width: 640px) {
   .fa-bars {

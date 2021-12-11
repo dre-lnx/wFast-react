@@ -1,7 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+const boardsFromBackEnd = [
+  {
+    id: 0,
+    title: 'Título da Board',
+  },
+  {
+    id: 1,
+    title: 'Título da Board',
+  },
+  {
+    id: 2,
+    title: 'Título da Board',
+  },
+  {
+    id: 3,
+    title: 'Título da Board',
+  },
+  {
+    id: 4,
+    title: 'Título da Board',
+  },
+  {
+    id: 5,
+    title: 'Título da Board',
+  },
+  {
+    id: 6,
+    title: 'Título da Board',
+  },
+  {
+    id: 7,
+    title: 'Título da Board',
+  },
+  {
+    id: 8,
+    title: 'Título da Board',
+  },
+]
+
 const Dashboard = () => {
+  const [boards, setBoards] = useState(boardsFromBackEnd)
+
   return (
     <div className="dashboard-container">
       <div className="boards-container">
@@ -27,24 +68,14 @@ const Dashboard = () => {
             <h1>Boards</h1>
           </div>
           <div className="boardsBody">
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
-            <div className="boardCard">
-              <span>Título da board</span>
-            </div>
+            {boards &&
+              boards.map((board) => {
+                return (
+                  <div className="boardCard">
+                    <span>{board.title}</span>
+                  </div>
+                )
+              })}
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ const Dashboard = () => {
         <div className="dashboard-sidebar">
           <div className="sidebarContainer">
             <ul className="sidebar-list">
-              <Link to="/profile">
+              <Link to="/profile" style={{ textDecoration: 'none' }}>
                 <li>
                   <i class="far fa-user-circle"></i>Perfil
                 </li>

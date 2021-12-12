@@ -209,19 +209,53 @@ const Item = () => {
                                       aria-describedby="modal-modal-description"
                                     >
                                       <Box sx={style}>
-                                        <Typography
-                                          id="modal-modal-title"
-                                          variant="h6"
-                                          component="h2"
-                                        >
-                                          Editando uma task
-                                        </Typography>
+                                        <div className="align-input-icons">
+                                          <Typography
+                                            id="modal-modal-title"
+                                            variant="h6"
+                                            component="h2"
+                                          >
+                                            Edição de Task
+                                          </Typography>
+                                          <i
+                                            class="fas fa-times"
+                                            onClick={() => handleClose()}
+                                          ></i>
+                                        </div>
                                         <Typography
                                           id="modal-modal-description"
                                           sx={{ mt: 2 }}
                                         >
-                                          Isso definitivamente ainda não ta
-                                          funcionando
+                                          <div class="form-floating mb-3">
+                                            <input
+                                              type="email"
+                                              class="form-control"
+                                              id="floatingInput"
+                                              placeholder="name@example.com"
+                                            />
+                                            <label for="floatingInput">
+                                              Nome
+                                            </label>
+                                          </div>
+                                          <div class="form-floating">
+                                            <textarea
+                                              class="form-control"
+                                              placeholder="Leave a comment here"
+                                              id="floatingTextarea2"
+                                              style={{ height: '100px' }}
+                                            ></textarea>
+                                            <label for="floatingTextarea2">
+                                              Descrição
+                                            </label>
+                                          </div>
+                                          <div class="d-grid gap-2 mt-3">
+                                            <button
+                                              class="btn btn-primary"
+                                              type="button"
+                                            >
+                                              Editar Task
+                                            </button>
+                                          </div>
                                         </Typography>
                                       </Box>
                                     </Modal>

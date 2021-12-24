@@ -13,7 +13,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 500,
+  height: 560,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -245,7 +245,9 @@ const Item = () => {
                                         >
                                           <div class="row">
                                             <div class="col">
-                                              <p>Dados gerais</p>
+                                              <p className="subtitles">
+                                                Dados gerais
+                                              </p>
                                               <div class="form-floating mb-3">
                                                 <input
                                                   type="email"
@@ -271,6 +273,9 @@ const Item = () => {
                                             </div>
                                           </div>
                                           <div class="row">
+                                            <p className="subtitles">
+                                              Dados gerais
+                                            </p>
                                             <div class="col col-lg-2">
                                               <button
                                                 type="button"

@@ -108,6 +108,11 @@ textarea {
   resize: none;
 }
 
+.subtitles {
+  margin-top: 15px;
+  font-weight: bolder;
+}
+
 /*----------------NavBar/*----------------*/
 .nav-logo {
   height: 25px;
@@ -550,7 +555,7 @@ textarea {
 }
 
 .etiquetas-btn {
-  margin-top: 14px;
+  margin-bottom: 14px;
 }
 
 .etiquetas {

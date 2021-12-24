@@ -132,6 +132,10 @@ $animation-pattern: 0.5s;
   cursor: pointer;
 }
 
+textarea {
+  resize: none;
+}
+
 /*----------------NavBar/*----------------*/
 
 .nav-logo {
@@ -455,6 +459,20 @@ $animation-pattern: 0.5s;
   }
   .plus-item:hover {
     cursor: pointer;
+  }
+}
+
+.etiquetas {
+  position: absolute;
+  margin-top: 10px;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid $border-pattern;
+  .row {
+    margin-bottom: 10px;
+  }
+  .row button {
+    height: 35px;
   }
 }
 

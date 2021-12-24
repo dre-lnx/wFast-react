@@ -9,10 +9,11 @@ import { v4 as uuid } from 'uuid'
 
 const style = {
   position: 'absolute',
-  top: '50%',
+  top: '40%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
+  height: 500,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -85,6 +86,7 @@ const Item = () => {
   const [statuses, setStatuses] = useState(['toDo', 'doing', 'done'])
 
   const [dropDown, setDropdown] = useState(false)
+  const [etiquetaDrop, setDrop] = useState(false)
 
   const [status, setStatus] = useState(null)
 
@@ -95,6 +97,14 @@ const Item = () => {
     } else {
       await setDropdown(true)
       return status
+    }
+  }
+
+  const etiquetaToggle = async (val) => {
+    if (val === true) {
+      return false
+    } else {
+      return true
     }
   }
 
@@ -226,35 +236,101 @@ const Item = () => {
                                           id="modal-modal-description"
                                           sx={{ mt: 2 }}
                                         >
-                                          <div class="form-floating mb-3">
-                                            <input
-                                              type="email"
-                                              class="form-control"
-                                              id="floatingInput"
-                                              placeholder="name@example.com"
-                                            />
-                                            <label for="floatingInput">
-                                              Nome
-                                            </label>
+                                          <div class="row">
+                                            <div class="col">
+                                              <p>Dados gerais</p>
+                                              <div class="form-floating mb-3">
+                                                <input
+                                                  type="email"
+                                                  class="form-control"
+                                                  id="floatingInput"
+                                                  placeholder="name@example.com"
+                                                />
+                                                <label for="floatingInput">
+                                                  Nome
+                                                </label>
+                                              </div>
+                                              <div class="form-floating">
+                                                <textarea
+                                                  class="form-control"
+                                                  placeholder="Leave a comment here"
+                                                  id="floatingTextarea2"
+                                                  style={{ height: '100px' }}
+                                                ></textarea>
+                                                <label for="floatingTextarea2">
+                                                  Descrição
+                                                </label>
+                                              </div>
+                                            </div>
                                           </div>
-                                          <div class="form-floating">
-                                            <textarea
-                                              class="form-control"
-                                              placeholder="Leave a comment here"
-                                              id="floatingTextarea2"
-                                              style={{ height: '100px' }}
-                                            ></textarea>
-                                            <label for="floatingTextarea2">
-                                              Descrição
-                                            </label>
-                                          </div>
-                                          <div class="d-grid gap-2 mt-3">
-                                            <button
-                                              class="btn btn-primary"
-                                              type="button"
-                                            >
-                                              Editar Task
-                                            </button>
+                                          <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            onClick={() => {
+                                              etiquetaToggle(etiquetaDrop).then(
+                                                (response) => {
+                                                  setDrop(response)
+                                                },
+                                              )
+                                            }}
+                                          >
+                                            Etiquetas
+                                          </button>
+                                          {etiquetaDrop === true && (
+                                            <div class="row etiquetas">
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-primary"
+                                                ></button>
+                                              </div>
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-secondary"
+                                                ></button>
+                                              </div>
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-danger"
+                                                ></button>
+                                              </div>
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-warning"
+                                                ></button>
+                                              </div>
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-info"
+                                                ></button>
+                                              </div>
+                                              <div class="row">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-dark"
+                                                ></button>
+                                              </div>
+                                            </div>
+                                          )}
+                                          <div class="row">
+                                            <div class="d-grid gap-2 mt-3">
+                                              <button
+                                                class="btn btn-primary"
+                                                type="button"
+                                              >
+                                                Atualizar Task
+                                              </button>
+                                              <button
+                                                class="btn btn-danger"
+                                                type="button"
+                                              >
+                                                Apagar Task
+                                              </button>
+                                            </div>
                                           </div>
                                         </Typography>
                                       </Box>

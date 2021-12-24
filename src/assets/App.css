@@ -104,6 +104,10 @@ html {
   cursor: pointer;
 }
 
+textarea {
+  resize: none;
+}
+
 /*----------------NavBar/*----------------*/
 .nav-logo {
   height: 25px;
@@ -538,6 +542,22 @@ html {
 
 .status .plus-item:hover {
   cursor: pointer;
+}
+
+.etiquetas {
+  position: absolute;
+  margin-top: 10px;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #d4d4d4;
+}
+
+.etiquetas .row {
+  margin-bottom: 10px;
+}
+
+.etiquetas .row button {
+  height: 35px;
 }
 
 /*-------------------Profile-------------------*/

@@ -65,7 +65,7 @@ const Dashboard = () => {
         </div>
         <div className="dashboard-body">
           <div className="dashboard-header">
-            <h1>Boards</h1>
+            <h2>Boards</h2>
           </div>
           <div className="boardsBody">
             {boards &&

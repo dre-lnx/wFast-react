@@ -12,6 +12,11 @@
 
 html {
   height: 100vh;
+  background-color: #e8e8e8;
+}
+
+#root {
+  background-color: #e8e8e8;
 }
 
 /*----------------Variables----------------*/
@@ -198,8 +203,7 @@ $animation-pattern: 0.5s;
 
 .login-container-sm {
   background-color: white;
-  -webkit-box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
-  box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
+  border: 1px solid $border-pattern;
   margin: auto;
   margin-top: 10vh;
   width: 100%;
@@ -257,6 +261,7 @@ $animation-pattern: 0.5s;
 }
 
 .boards-container {
+  background-color: white;
   border: 1px solid $border-pattern;
   display: flex;
   flex-direction: row;
@@ -300,10 +305,12 @@ $animation-pattern: 0.5s;
         background-color: black;
       }
     }
-    h1 {
+    h2 {
       font-family: 'Open Sans', sans-serif;
       padding: $box-spacing;
       padding-top: 0px;
+      padding-bottom: 20px;
+      margin-bottom: 0px;
     }
     .boardsBody {
       display: flex;
@@ -409,7 +416,9 @@ $animation-pattern: 0.5s;
 .status {
   border-radius: 6px;
   @include flex-y();
-  background-color: lightgrey;
+  background-color: white;
+  border: 1px solid $border-pattern;
+  padding: 15px;
   .status-header {
     .fa-ellipsis-h {
       border-radius: 6px;
@@ -515,6 +524,10 @@ $animation-pattern: 0.5s;
 
 .home-logo {
   margin-top: 10vh;
+  margin-bottom: 10vh;
+  img {
+    @include center-x();
+  }
 }
 
 /*-----------------Mobile-----------------*/
@@ -543,6 +556,7 @@ $animation-pattern: 0.5s;
     }
   }
   .boards-container {
+    background-color: transparent !important;
     display: flex !important;
     flex-direction: column !important;
     padding: 0px !important;

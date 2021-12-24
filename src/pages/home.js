@@ -10,7 +10,7 @@ const Home = () => {
           <img src={logo} alt="logo wfast" />
         </div>
         <div class="col">
-          <h1>Bem Vindo à wFast</h1>
+          <h1>Gerencie o Seu Tempo</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id
             dui nec felis fermentum bibendum eu ac dui. Donec et venenatis est.

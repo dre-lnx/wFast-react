@@ -9,6 +9,11 @@
 /*----------------Body----------------*/
 html {
   height: 100vh;
+  background-color: #e8e8e8;
+}
+
+#root {
+  background-color: #e8e8e8;
 }
 
 /*----------------Variables----------------*/
@@ -194,8 +199,7 @@ html {
 /*----------------FormFrame----------------*/
 .login-container-sm {
   background-color: white;
-  -webkit-box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
-  box-shadow: -1px 2px 8px 3px rgba(0, 0, 0, 0.33);
+  border: 1px solid #d4d4d4;
   margin: auto;
   margin-top: 10vh;
   width: 100%;
@@ -268,6 +272,7 @@ html {
 }
 
 .boards-container {
+  background-color: white;
   border: 1px solid #d4d4d4;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -328,10 +333,12 @@ html {
   background-color: black;
 }
 
-.boards-container .dashboard-body h1 {
+.boards-container .dashboard-body h2 {
   font-family: 'Open Sans', sans-serif;
   padding: 28px;
   padding-top: 0px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .boards-container .dashboard-body .boardsBody {
@@ -485,7 +492,9 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: lightgrey;
+  background-color: white;
+  border: 1px solid #d4d4d4;
+  padding: 15px;
 }
 
 .status .status-header .fa-ellipsis-h {
@@ -630,6 +639,12 @@ html {
 
 .home-logo {
   margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.home-logo img {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*-----------------Mobile-----------------*/
@@ -659,6 +674,7 @@ html {
     margin-right: 0px !important;
   }
   .boards-container {
+    background-color: transparent !important;
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;

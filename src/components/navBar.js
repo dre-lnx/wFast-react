@@ -28,6 +28,7 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
+
       <div className="avatar-div">
         <span className="avatar-title">Rick</span>
         <img src={avatar} alt="user avatar" className="avatar-img" />

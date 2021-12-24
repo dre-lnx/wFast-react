@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
@@ -90,6 +90,8 @@ const Item = () => {
 
   const [status, setStatus] = useState(null)
 
+  const [etiqueta, setEtiqueta] = useState('primary')
+
   const toggle = async (val, status) => {
     if (val === true) {
       await setDropdown(false)
@@ -106,6 +108,11 @@ const Item = () => {
     } else {
       return true
     }
+  }
+
+  const toggleEtiquetaColor = (className) => {
+    console.log(className)
+    return setEtiqueta(className)
   }
 
   const createTask = (column) => {
@@ -263,55 +270,95 @@ const Item = () => {
                                               </div>
                                             </div>
                                           </div>
-                                          <button
-                                            type="button"
-                                            class="btn btn-primary"
-                                            onClick={() => {
-                                              etiquetaToggle(etiquetaDrop).then(
-                                                (response) => {
-                                                  setDrop(response)
-                                                },
-                                              )
-                                            }}
-                                          >
-                                            Etiquetas
-                                          </button>
+                                          <div class="row">
+                                            <div class="col col-lg-2">
+                                              <button
+                                                type="button"
+                                                class="btn btn-primary etiquetas-btn"
+                                                onClick={() => {
+                                                  etiquetaToggle(
+                                                    etiquetaDrop,
+                                                  ).then((response) => {
+                                                    setDrop(response)
+                                                  })
+                                                }}
+                                              >
+                                                Etiquetas
+                                              </button>
+                                            </div>
+                                            <div class="col">
+                                              <button
+                                                className={
+                                                  'btn btn-' +
+                                                  etiqueta +
+                                                  ' etiquetas-btn'
+                                                }
+                                                id="selected-etq"
+                                              ></button>
+                                            </div>
+                                          </div>
                                           {etiquetaDrop === true && (
                                             <div class="row etiquetas">
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-primary"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor(
+                                                      'primary',
+                                                    )
+                                                  }}
                                                 ></button>
                                               </div>
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-secondary"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor(
+                                                      'secondary',
+                                                    )
+                                                  }}
                                                 ></button>
                                               </div>
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-danger"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor(
+                                                      'danger',
+                                                    )
+                                                  }}
                                                 ></button>
                                               </div>
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-warning"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor(
+                                                      'warning',
+                                                    )
+                                                  }}
                                                 ></button>
                                               </div>
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-info"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor('info')
+                                                  }}
                                                 ></button>
                                               </div>
                                               <div class="row">
                                                 <button
                                                   type="button"
                                                   class="btn btn-dark"
+                                                  onClick={() => {
+                                                    toggleEtiquetaColor('dark')
+                                                  }}
                                                 ></button>
                                               </div>
                                             </div>

@@ -81,7 +81,10 @@ const onDragEnd = (result, columns, setColumns) => {
 const Item = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+    setDrop(false)
+  }
   const [columns, setColumns] = useState(columnsFromBackEnd)
   const [statuses, setStatuses] = useState(['toDo', 'doing', 'done'])
 

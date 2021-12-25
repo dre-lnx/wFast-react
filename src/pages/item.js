@@ -80,7 +80,10 @@ const onDragEnd = (result, columns, setColumns) => {
 
 const Item = () => {
   const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
+  const handleOpen = () => {
+    setOpen(true)
+    setDropdown(false)
+  }
   const handleClose = () => {
     setOpen(false)
     setDrop(false)

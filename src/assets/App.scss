@@ -152,6 +152,11 @@ textarea {
   }
 }
 
+.fa-tag {
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
 .description {
   @include center-x();
   text-align: center;

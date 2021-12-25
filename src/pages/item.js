@@ -284,7 +284,6 @@ const Item = () => {
                                           </div>
                                           <div class="row">
                                             <div className="align-text-icons">
-                                              <i class="fas fa-tag"></i>
                                               <p className="subtitles">
                                                 Seleção de Etiqueta
                                               </p>
@@ -292,7 +291,7 @@ const Item = () => {
                                             <div class="col col-lg-2">
                                               <button
                                                 type="button"
-                                                class="btn btn-primary etiquetas-btn"
+                                                class="btn btn-primary etiquetas-btn flex-x-end"
                                                 onClick={() => {
                                                   etiquetaToggle(
                                                     etiquetaDrop,
@@ -301,6 +300,7 @@ const Item = () => {
                                                   })
                                                 }}
                                               >
+                                                <i class="fas fa-tag"></i>
                                                 Etiquetas
                                               </button>
                                             </div>

@@ -132,6 +132,11 @@ textarea {
   margin-top: 20px;
 }
 
+.fa-tag {
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
 .description {
   margin-left: auto;
   margin-right: auto;

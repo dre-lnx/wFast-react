@@ -168,6 +168,11 @@ textarea {
   transition: 0.2s;
 }
 
+.container-pattern {
+  background-color: white !important;
+  border: 1px solid #d4d4d4;
+}
+
 /*----------------NavBar/*----------------*/
 .nav-logo {
   height: 25px;

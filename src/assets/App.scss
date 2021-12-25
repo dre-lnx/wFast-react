@@ -172,6 +172,11 @@ textarea {
   transition: 0.2s;
 }
 
+.container-pattern {
+  background-color: white !important;
+  border: 1px solid $border-pattern;
+}
+
 /*----------------NavBar/*----------------*/
 
 .nav-logo {

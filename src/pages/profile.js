@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Profile = () => {
   return (
-    <div className="container-fluid profile-container">
+    <div className="container-fluid profile-container container-pattern">
       <div className="flex-x-end">
         <Link to="profile/edit">
           <button type="button" class="btn btn-outline-primary">

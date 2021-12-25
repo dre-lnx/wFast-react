@@ -182,6 +182,35 @@ textarea {
   border: 1px solid $border-pattern;
 }
 
+.dropDown {
+  font-family: 'Open Sans', sans-serif;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white !important;
+  border: 1px solid $border-pattern;
+  position: absolute;
+  right: 0;
+  ul {
+    padding-left: 0px;
+    list-style-type: none;
+    li {
+      font-weight: bolder;
+      padding-left: 10px;
+      padding-right: 10px;
+      width: 100%;
+      transition: 0.3s;
+      .fa-sign-out-alt {
+        margin-right: 10px;
+        padding: 10px;
+      }
+    }
+    li:hover {
+      cursor: pointer;
+      background-color: lightgrey;
+    }
+  }
+}
+
 /*----------------NavBar/*----------------*/
 
 .nav-logo {

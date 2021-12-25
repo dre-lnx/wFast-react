@@ -178,6 +178,40 @@ textarea {
   border: 1px solid #d4d4d4;
 }
 
+.dropDown {
+  font-family: 'Open Sans', sans-serif;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white !important;
+  border: 1px solid #d4d4d4;
+  position: absolute;
+  right: 0;
+}
+
+.dropDown ul {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.dropDown ul li {
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.dropDown ul li .fa-sign-out-alt {
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.dropDown ul li:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
 /*----------------NavBar/*----------------*/
 .nav-logo {
   height: 25px;

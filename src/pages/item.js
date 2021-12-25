@@ -227,13 +227,17 @@ const Item = () => {
                                     >
                                       <Box sx={style}>
                                         <div className="align-input-icons">
-                                          <Typography
-                                            id="modal-modal-title"
-                                            variant="h6"
-                                            component="h2"
-                                          >
-                                            Edição de Task
-                                          </Typography>
+                                          <div className="align-text-icons">
+                                            <i class="fas fa-pen"></i>
+                                            <Typography
+                                              id="modal-modal-title"
+                                              variant="h6"
+                                              component="h2"
+                                            >
+                                              Edição de Task
+                                            </Typography>
+                                          </div>
+
                                           <i
                                             class="fas fa-times"
                                             onClick={() => handleClose()}
@@ -273,9 +277,12 @@ const Item = () => {
                                             </div>
                                           </div>
                                           <div class="row">
-                                            <p className="subtitles">
-                                              Dados gerais
-                                            </p>
+                                            <div className="align-text-icons">
+                                              <i class="fas fa-tag"></i>
+                                              <p className="subtitles">
+                                                Seleção de Etiqueta
+                                              </p>
+                                            </div>
                                             <div class="col col-lg-2">
                                               <button
                                                 type="button"
@@ -368,6 +375,7 @@ const Item = () => {
                                               </div>
                                             </div>
                                           )}
+                                          <div class="dropdown-divider"></div>
                                           <div class="row">
                                             <div class="d-grid gap-2 mt-3">
                                               <button

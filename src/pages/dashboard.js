@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useQuery, gql } from '@apollo/client'
+import { GET_BOARDS } from '../graphql/queries'
 
 const boardsFromBackEnd = [
   {
@@ -41,6 +43,12 @@ const boardsFromBackEnd = [
 ]
 
 const Dashboard = () => {
+  const { error, loading, data } = useQuery(GET_BOARDS)
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   const [boards, setBoards] = useState(boardsFromBackEnd)
 
   return (

@@ -5,10 +5,10 @@ import { useMutation } from '@apollo/client'
 import logo from '../assets/logo.svg'
 
 const SignUp = () => {
-  const [userName, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
+  const [userName, setUsername] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [repeatPassword, setRepeatPassword] = useState(null)
 
   const [addUser, { data, loading, error }] = useMutation(ADD_USER)
 

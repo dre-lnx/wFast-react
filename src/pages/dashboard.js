@@ -43,13 +43,20 @@ const boardsFromBackEnd = [
 ]
 
 const Dashboard = () => {
-  const { error, loading, data } = useQuery(GET_BOARDS)
+  const [boards, setBoards] = useState(null)
+
+  const { error, loading, data } = useQuery(GET_BOARDS, {
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
+    onCompleted: async (res) => {
+      await setBoards(res.getAllItems)
+      console.log(boards)
+    },
+  })
 
   useEffect(() => {
     console.log(data)
   }, [data])
-
-  const [boards, setBoards] = useState(boardsFromBackEnd)
 
   return (
     <div className="dashboard-container">
@@ -80,7 +87,7 @@ const Dashboard = () => {
               boards.map((board) => {
                 return (
                   <div className="boardCard">
-                    <span>{board.title}</span>
+                    <span>{board.name}</span>
                   </div>
                 )
               })}

@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import '../assets/App.css'
-import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
+import logo from '../assets/logo.svg'
+import ReactDOM from 'react-dom'
 
-const Login = () => {
+const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -12,21 +11,39 @@ const Login = () => {
   return (
     <div className="login-container-sm">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-y-layout" id="signIn-form">
+        <div className="form-y-layout input-group" id="signUp-form">
           <div className="header">
             <img src={logo} alt="wfast logo" className="formLogo" />
             <p>Login wFast</p>
           </div>
           <div class="form-floating mb-3">
             <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Name"
+            />
+            <label for="floatingInput">Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Surname"
+            />
+            <label for="floatingInput">Sobrenome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
               type="email"
               class="form-control"
               id="floatingInput"
-              placeholder="name@example.com"
+              placeholder="Email"
             />
             <label for="floatingInput">Endereço de E-mail</label>
           </div>
-          <div class="form-floating">
+          <div class="form-floating mb-3">
             <input
               type="password"
               class="form-control"
@@ -35,17 +52,16 @@ const Login = () => {
             />
             <label for="floatingPassword">Senha</label>
           </div>
-          <button type="button" class="btn btn-primary">
-            Fazer Login
+          <button type="button" class="btn btn-success">
+            Criar Conta
           </button>
-          <Link to="/signup" className="form-link">
-            Ainda não tem uma conta?
+          <Link to="/login" className="form-link">
+            Já possuo uma conta
           </Link>
-          <button className="form-link">Esqueci minha senha</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default Login
+export default SignUp

@@ -5,6 +5,7 @@ import NavBar from '../components/navBar'
 
 import Dashboard from '../pages/dashboard'
 import Login from '../pages/login'
+import SignUp from '../pages/signUp'
 import Home from '../pages/home'
 import Item from '../pages/item'
 import ProfileEdit from '../pages/profileEdit'
@@ -16,6 +17,7 @@ const AppRouter = () => {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
         <div>
           <NavBar />
           <Route path="/" exact component={Home} />

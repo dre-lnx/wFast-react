@@ -297,6 +297,11 @@ textarea {
   transition: 2s;
 }
 
+.fields-warning * {
+  color: #cf3c3c;
+  font-size: 10px;
+}
+
 .form-y-layout {
   @include flex-y;
   input,

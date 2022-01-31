@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NavBar from '../components/navBar'
 
 import Dashboard from '../pages/dashboard'
-import Login from '../pages/login'
+import LogIn from '../pages/logIn'
 import SignUp from '../pages/signUp'
 import Home from '../pages/home'
 import Item from '../pages/item'
@@ -16,7 +16,7 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/login" component={Login} />
+        <Route path="/login" component={LogIn} />
         <Route path="/signup" component={SignUp} />
         <div>
           <NavBar />

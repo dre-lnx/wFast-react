@@ -17,10 +17,6 @@ const LogIn = () => {
       .required('Obrigatório'),
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
   return (
     <Formik
     initialValues={{

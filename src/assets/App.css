@@ -323,6 +323,11 @@ textarea {
   transition: 2s;
 }
 
+.fields-warning * {
+  color: #cf3c3c;
+  font-size: 10px;
+}
+
 .form-y-layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -333,10 +338,13 @@ textarea {
           flex-direction: column;
 }
 
-.form-y-layout input,
 .form-y-layout button {
   margin-bottom: 23px;
   font-family: 'Open Sans', sans-serif;
+}
+
+.ipt {
+  padding-bottom: 16px;
 }
 
 .formLogo {
@@ -365,6 +373,8 @@ textarea {
   color: #0275d8;
   text-decoration: none;
   background-color: white;
+  margin-bottom: 8px;
+  padding: 0px;
 }
 
 /*----------------Dashboard----------------*/
@@ -829,6 +839,11 @@ textarea {
   .sidebar-list li {
     border: 1px solid #d4d4d4;
   }
+}
+
+.invalid-warn {
+  color: red;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 640px) {

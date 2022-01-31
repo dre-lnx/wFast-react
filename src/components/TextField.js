@@ -5,7 +5,7 @@ const TextField = ({ label, ...props }) => {
     const [field, meta] = useField(props)
     console.log(field, meta)
     return (
-        <div class="form-floating mb-3">
+        <div className="form-floating mb-3 ipt">
         <input
           type={props.type}
           autoComplete="off"
@@ -16,7 +16,9 @@ const TextField = ({ label, ...props }) => {
           {...field}
         />
         <label for="floatingInput">{label}</label>
-        <ErrorMessage name={field.name} className="fields-warning"/>
+        <span className="invalid-warn">
+        <ErrorMessage name={field.name}/>
+        </span>
       </div>
     )
 }

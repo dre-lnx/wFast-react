@@ -304,11 +304,14 @@ textarea {
 
 .form-y-layout {
   @include flex-y;
-  input,
   button {
     margin-bottom: 23px;
     font-family: 'Open Sans', sans-serif;
   }
+}
+
+.ipt {
+  padding-bottom: 16px;
 }
 
 .formLogo {
@@ -335,6 +338,8 @@ textarea {
   color: #0275d8;
   text-decoration: none;
   background-color: white;
+  margin-bottom: 8px;
+  padding:0px;
 }
 
 /*----------------Dashboard----------------*/
@@ -684,6 +689,11 @@ textarea {
       border: 1px solid $border-pattern;
     }
   }
+}
+
+.invalid-warn {
+  color: red;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 640px) {

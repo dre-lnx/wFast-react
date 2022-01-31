@@ -59,7 +59,6 @@ const SignUp = () => {
     >
     {formik => (
     <div className="login-container-sm">
-      {console.log(formik.values)}
       <Form>
         <div className="form-y-layout input-group" id="signUp-form">
           <div className="header">

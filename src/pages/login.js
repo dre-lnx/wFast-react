@@ -5,8 +5,14 @@ import { Link } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import TextField from '../components/TextField'
 import * as Yup from 'yup'
+import { LOGIN } from '../graphql/queries'
+import { useQuery } from '@apollo/client'
 
 const LogIn = () => {
+
+  const { data, loading, error } = useQuery(LOGIN, {
+    variables: { email, pwd }
+  });
 
   const validate = Yup.object({
     email: Yup.string()
@@ -24,13 +30,19 @@ const LogIn = () => {
       pwd: '',
     }}
 
+
     validationSchema={validate}
 
     onSubmit={(values, actions) => {
       var email = values.email
       var senha = values.pwd
 
-      console.log(email, senha);
+      actions.resetForm({
+        values: {
+            email: '',
+            pwd: '',
+        }
+    })
 }}
     >
     <div className="login-container-sm">

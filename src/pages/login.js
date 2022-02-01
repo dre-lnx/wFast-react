@@ -6,13 +6,11 @@ import { Form, Formik } from 'formik'
 import TextField from '../components/TextField'
 import * as Yup from 'yup'
 import { LOGIN } from '../graphql/queries'
-import { useQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 
 const LogIn = () => {
 
-  const { data, loading, error } = useQuery(LOGIN, {
-    variables: { email, pwd }
-  });
+  const [ authUser, { loading, data } ] = useLazyQuery(LOGIN)
 
   const validate = Yup.object({
     email: Yup.string()
@@ -30,12 +28,18 @@ const LogIn = () => {
       pwd: '',
     }}
 
-
     validationSchema={validate}
 
     onSubmit={(values, actions) => {
       var email = values.email
       var senha = values.pwd
+
+      authUser({
+        variables: { data: { email: email, pwd: senha }},
+        onComplete: (res) => {
+          console.log(res)
+        }
+      })
 
       actions.resetForm({
         values: {
@@ -43,6 +47,8 @@ const LogIn = () => {
             pwd: '',
         }
     })
+
+
 }}
     >
     <div className="login-container-sm">

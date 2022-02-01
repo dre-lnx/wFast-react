@@ -16,6 +16,7 @@ export const GET_BOARDS = gql`
 export const LOGIN = gql`
   query logIn($data: LoginInput) {
     logIn(data: $data) {
+      token
         user {
           name,
           email

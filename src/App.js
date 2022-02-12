@@ -8,6 +8,7 @@ import {
   HttpLink,
   from,
 } from '@apollo/client'
+import { AuthProvider } from './contexts/auth'
 
 import { ErrorLink, onError } from '@apollo/client/link/error'
 
@@ -30,9 +31,11 @@ const client = new ApolloClient({
 
 function App() {
   return(
-    <ApolloProvider client={client}>
-      <AppRouter />
-    </ApolloProvider>
+    <AuthProvider>
+      <ApolloProvider client={client}>
+        <AppRouter />
+      </ApolloProvider>
+    </AuthProvider>
   )
 }
 

@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../assets/App.css'
 import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
@@ -8,9 +8,24 @@ import * as Yup from 'yup'
 import { LOGIN } from '../graphql/queries'
 import { useLazyQuery } from '@apollo/client'
 
+import AuthContext from '../contexts/auth'
+
 const LogIn = () => {
 
+  const contexto = useContext(AuthContext)
+
+  console.log(contexto)
+
   const [ authUser, { loading, data } ] = useLazyQuery(LOGIN)
+
+  useEffect(() => {
+    console.log(data)
+    if(data) {
+      contexto.signed = "iwdwnd"
+      contexto.Login(data.logIn)
+      console.log(contexto);
+    }
+  }, [data])
 
   const validate = Yup.object({
     email: Yup.string()
@@ -31,13 +46,14 @@ const LogIn = () => {
     validationSchema={validate}
 
     onSubmit={(values, actions) => {
+      console.log("asdasdasdas")
       var email = values.email
       var senha = values.pwd
 
       authUser({
         variables: { data: { email: email, pwd: senha }},
-        onComplete: (res) => {
-          console.log(res)
+        onComplete: async(res) => {
+         console.log(res);
         }
       })
 

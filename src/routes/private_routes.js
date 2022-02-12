@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from '../components/navBar';
 
-//import PageNotFound from '../PageNotFound.js';
+import PageNotFound from '../pages/pageNotFound';
 import Dashboard from '../pages/dashboard'
 import Item from '../pages/item'
 import ProfileEdit from '../pages/profileEdit'
@@ -20,6 +20,7 @@ const Private_routes = () => {
               <Route path="/item" exact component={Item} />
               <Route path="/profile/edit" exact component={ProfileEdit} />
               <Route path="/profile" exact component={Profile} />
+              <Route path="*" component={PageNotFound} />
           </div>
           </Switch>
         </BrowserRouter>

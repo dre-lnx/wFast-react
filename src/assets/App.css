@@ -795,10 +795,19 @@ textarea {
   margin-right: auto;
 }
 
+.boardCard {
+  width: 100% !important;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 /*-----------------Mobile-----------------*/
 @media only screen and (max-width: 1616px) {
   .boardCard {
-    width: 40% !important;
+    width: 100% !important;
   }
 }
 

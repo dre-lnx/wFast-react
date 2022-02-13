@@ -11,13 +11,13 @@ const Public_routes = () => {
     return (
         <BrowserRouter>
         <Switch>
-          <Route path="/login" component={LogIn} />
-          <Route path="/signup" component={SignUp} />
+          <Route path="/login" exact component={LogIn} />
+          <Route path="/signup" exact component={SignUp} />
           <div>
             <NavBar />
-            <Route path="/" exact component={Home} />
-            <Route path="*" component={PageNotFound} />
+            <Route path="/" component={Home} />
           </div>
+          <Route path="*" component={PageNotFound} />
         </Switch>
       </BrowserRouter>
     );

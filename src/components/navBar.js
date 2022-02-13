@@ -32,9 +32,6 @@ const NavBar = () => {
           }
             {signed === true &&
             <>
-               <li>
-                <Link to="/">Home</Link>
-              </li>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>

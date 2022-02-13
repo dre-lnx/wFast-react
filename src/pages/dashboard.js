@@ -1,62 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery, gql } from '@apollo/client'
-import { GET_BOARDS } from '../graphql/queries'
-
-const boardsFromBackEnd = [
-  {
-    id: 0,
-    title: 'Título da Board',
-  },
-  {
-    id: 1,
-    title: 'Título da Board',
-  },
-  {
-    id: 2,
-    title: 'Título da Board',
-  },
-  {
-    id: 3,
-    title: 'Título da Board',
-  },
-  {
-    id: 4,
-    title: 'Título da Board',
-  },
-  {
-    id: 5,
-    title: 'Título da Board',
-  },
-  {
-    id: 6,
-    title: 'Título da Board',
-  },
-  {
-    id: 7,
-    title: 'Título da Board',
-  },
-  {
-    id: 8,
-    title: 'Título da Board',
-  },
-]
+import { useQuery } from '@apollo/client'
+import { GET_USER_BOARDS } from '../graphql/queries'
+import AuthContext from '../contexts/auth'
 
 const Dashboard = () => {
   const [boards, setBoards] = useState(null)
 
-  const { error, loading, data } = useQuery(GET_BOARDS, {
+  const contexto = useContext(AuthContext)
+
+  console.log(contexto)
+
+  const { error, loading, data } = useQuery(GET_USER_BOARDS, {
+    variables: { id: parseInt(contexto.user.id) },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
     onCompleted: async (res) => {
-      await setBoards(res.getAllItems)
-      console.log(boards)
+      setBoards(res.getUserBoards)
     },
   })
 
   useEffect(() => {
-    console.log(data)
-  }, [data])
+    console.log(boards)
+  }, [boards])
 
   return (
     <div className="dashboard-container">
@@ -86,9 +52,11 @@ const Dashboard = () => {
             {boards &&
               boards.map((board) => {
                 return (
-                  <div className="boardCard">
-                    <span>{board.name}</span>
-                  </div>
+                  <Link to={`item/${contexto.user.id}/${board.id}`}>
+                    <div className="boardCard">
+                      <span>{board.name}</span>
+                    </div>
+                  </Link>
                 )
               })}
           </div>

@@ -43,7 +43,7 @@ const FormFrame = () => {
                 <label for="floatingPassword">Senha</label>
               </div>
               <button type="button" class="btn btn-primary">
-                Fazer Login
+                Login
               </button>
               <button
                 className="form-link"
@@ -96,7 +96,7 @@ const FormFrame = () => {
               <label for="floatingPassword">Senha</label>
             </div>
             <button type="button" class="btn btn-success">
-              Criar Conta
+              SignUp
             </button>
             <button
               className="form-link"

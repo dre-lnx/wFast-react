@@ -1,30 +1,28 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import NavBar from '../components/navBar';
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import NavBar from '../components/navBar'
 
-import PageNotFound from '../pages/pageNotFound';
+import PageNotFound from '../pages/pageNotFound'
 import Dashboard from '../pages/dashboard'
 import Item from '../pages/item'
 import ProfileEdit from '../pages/profileEdit'
 import Profile from '../pages/profile'
-import Home from '../pages/home';
+import Home from '../pages/home'
 
 const Private_routes = () => {
-    return (
-        <BrowserRouter>
-          <Switch>
-          <div>
-              <NavBar />
-              <Route path="/" exact component={Home} />
-              <Route path="/dashboard" exact component={Dashboard} />
-              <Route path="/item" exact component={Item} />
-              <Route path="/profile/edit" exact component={ProfileEdit} />
-              <Route path="/profile" exact component={Profile} />
-              <Route path="*" component={PageNotFound} />
-          </div>
-          </Switch>
-        </BrowserRouter>
-      )
-};
+  return (
+    <BrowserRouter>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/item/:userId/:boardId" component={Item} />
+        <Route path="/profile/edit" component={ProfileEdit} />
+        <Route path="/profile" component={Profile} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </BrowserRouter>
+  )
+}
 
-export default Private_routes;
+export default Private_routes

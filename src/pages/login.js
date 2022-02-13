@@ -77,7 +77,7 @@ const LogIn = () => {
             <TextField type="email" label="E-mail de usuário" name="email"></TextField>
             <TextField type="password" label="Senha" name="pwd"></TextField>
           <button type="submit" class="btn btn-primary">
-            Fazer Login
+            Login
           </button>
           <Link to="/signup" className="form-link">
             Ainda não tem uma conta?

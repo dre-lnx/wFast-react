@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
+import { useParams } from 'react-router-dom'
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import { v4 as uuid } from 'uuid'
+import { useQuery } from '@apollo/client'
+
+import { GET_BOARD_TASKS } from '../graphql/queries'
 
 const style = {
   position: 'absolute',
@@ -18,28 +22,6 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-}
-
-const itemsFromBackEnd = [
-  { id: uuid(), content: 'First Task' },
-  { id: uuid(), content: 'Second Task ' },
-  { id: uuid(), content: 'Third Task ' },
-  { id: uuid(), content: 'Fourth Task ' },
-]
-
-const columnsFromBackEnd = {
-  0: {
-    name: 'toDo',
-    items: itemsFromBackEnd,
-  },
-  1: {
-    name: 'doing',
-    items: [],
-  },
-  2: {
-    name: 'done',
-    items: [],
-  },
 }
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -79,6 +61,51 @@ const onDragEnd = (result, columns, setColumns) => {
 }
 
 const Item = () => {
+  const [initialColumnsFromBackEnd, setInitialColumns] = useState([
+    {
+      name: 'toDo',
+      items: [],
+    },
+    {
+      name: 'doing',
+      items: [],
+    },
+    {
+      name: 'done',
+      items: [],
+    },
+  ])
+
+  const [columnsFromBackEnd, setColumnsFromBackEnd] = useState(
+    initialColumnsFromBackEnd,
+  )
+
+  const [tasks, setTasks] = useState(null)
+  const { userId, boardId } = useParams()
+
+  const { data, error, loading } = useQuery(GET_BOARD_TASKS, {
+    variables: { user: userId, board: boardId },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
+    onCompleted: async (res) => {
+      console.log(res)
+      setTasks(res.getBoardTasks)
+    },
+  })
+
+  useEffect(() => {
+    setColumnsFromBackEnd(initialColumnsFromBackEnd)
+    if (tasks && data) {
+      tasks.map((task) => {
+        return setColumnsFromBackEnd(
+          initialColumnsFromBackEnd[0].items.push(task),
+        )
+      })
+      console.log(columnsFromBackEnd)
+      console.log(tasks)
+    }
+  }, [tasks])
+
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => {
     setOpen(true)
@@ -88,6 +115,7 @@ const Item = () => {
     setOpen(false)
     setDrop(false)
   }
+
   const [columns, setColumns] = useState(columnsFromBackEnd)
   const [statuses, setStatuses] = useState(['toDo', 'doing', 'done'])
 
@@ -124,7 +152,7 @@ const Item = () => {
   const createTask = (column) => {
     statuses.forEach((stts, index) => {
       if (column === stts) {
-        columns[index].items.push({ id: uuid(), content: 'New Task' })
+        columns[index].items.push({ id: uuid(), name: 'New Task' })
       }
     })
   }
@@ -137,7 +165,6 @@ const Item = () => {
       }
     })
   }
-
   return (
     <div className="item-container">
       <DragDropContext
@@ -206,207 +233,214 @@ const Item = () => {
                           maxHeight: 500,
                         }}
                       >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div>
-                                    <div
-                                      onClick={handleOpen}
-                                      className="task"
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                    >
-                                      {item.content}
-                                    </div>
-                                    <Modal
-                                      open={open}
-                                      onClose={handleClose}
-                                      aria-labelledby="modal-modal-title"
-                                      aria-describedby="modal-modal-description"
-                                    >
-                                      <Box sx={style}>
-                                        <div className="align-input-icons">
-                                          <div className="align-text-icons">
-                                            <i class="fas fa-pen"></i>
-                                            <Typography
-                                              id="modal-modal-title"
-                                              variant="h6"
-                                              component="h2"
-                                            >
-                                              Edição de Task
-                                            </Typography>
-                                          </div>
-
-                                          <i
-                                            class="fas fa-times"
-                                            onClick={() => handleClose()}
-                                          ></i>
-                                        </div>
-                                        <Typography
-                                          id="modal-modal-description"
-                                          sx={{ mt: 2 }}
-                                        >
-                                          <div class="row">
-                                            <div class="col">
-                                              <p className="subtitles">
-                                                Dados gerais
-                                              </p>
-                                              <div class="form-floating mb-3">
-                                                <input
-                                                  type="email"
-                                                  class="form-control"
-                                                  id="floatingInput"
-                                                  placeholder="name@example.com"
-                                                />
-                                                <label for="floatingInput">
-                                                  Nome
-                                                </label>
-                                              </div>
-                                              <div class="form-floating">
-                                                <textarea
-                                                  class="form-control"
-                                                  placeholder="Leave a comment here"
-                                                  id="floatingTextarea2"
-                                                  style={{ height: '100px' }}
-                                                ></textarea>
-                                                <label for="floatingTextarea2">
-                                                  Descrição
-                                                </label>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="row">
+                        {tasks &&
+                          column.items.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}
+                              >
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div>
+                                      <div
+                                        onClick={handleOpen}
+                                        className="task"
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                      >
+                                        {item.name}
+                                      </div>
+                                      <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                      >
+                                        <Box sx={style}>
+                                          <div className="align-input-icons">
                                             <div className="align-text-icons">
-                                              <p className="subtitles">
-                                                Seleção de Etiqueta
-                                              </p>
-                                            </div>
-                                            <div class="col col-lg-2">
-                                              <button
-                                                type="button"
-                                                class="btn btn-primary etiquetas-btn flex-x-end"
-                                                onClick={() => {
-                                                  etiquetaToggle(
-                                                    etiquetaDrop,
-                                                  ).then((response) => {
-                                                    setDrop(response)
-                                                  })
-                                                }}
+                                              <i class="fas fa-pen"></i>
+                                              <Typography
+                                                id="modal-modal-title"
+                                                variant="h6"
+                                                component="h2"
                                               >
-                                                <i class="fas fa-tag"></i>
-                                                Etiquetas
-                                              </button>
+                                                Edição de Task
+                                              </Typography>
                                             </div>
-                                            <div class="col">
-                                              <button
-                                                className={
-                                                  'btn btn-' +
-                                                  etiqueta +
-                                                  ' etiquetas-btn'
-                                                }
-                                                id="selected-etq"
-                                              ></button>
-                                            </div>
+
+                                            <i
+                                              class="fas fa-times"
+                                              onClick={() => handleClose()}
+                                            ></i>
                                           </div>
-                                          {etiquetaDrop === true && (
-                                            <div class="row etiquetas">
-                                              <div class="row">
+                                          <Typography
+                                            id="modal-modal-description"
+                                            sx={{ mt: 2 }}
+                                          >
+                                            <div class="row">
+                                              <div class="col">
+                                                <p className="subtitles">
+                                                  Dados gerais
+                                                </p>
+                                                <div class="form-floating mb-3">
+                                                  <input
+                                                    type="email"
+                                                    class="form-control"
+                                                    id="floatingInput"
+                                                    placeholder="name@example.com"
+                                                  />
+                                                  <label for="floatingInput">
+                                                    Nome
+                                                  </label>
+                                                </div>
+                                                <div class="form-floating">
+                                                  <textarea
+                                                    class="form-control"
+                                                    placeholder="Leave a comment here"
+                                                    id="floatingTextarea2"
+                                                    style={{
+                                                      height: '100px',
+                                                    }}
+                                                  ></textarea>
+                                                  <label for="floatingTextarea2">
+                                                    Descrição
+                                                  </label>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div className="align-text-icons">
+                                                <p className="subtitles">
+                                                  Seleção de Etiqueta
+                                                </p>
+                                              </div>
+                                              <div class="col col-lg-2">
                                                 <button
                                                   type="button"
+                                                  class="btn btn-primary etiquetas-btn flex-x-end"
+                                                  onClick={() => {
+                                                    etiquetaToggle(
+                                                      etiquetaDrop,
+                                                    ).then((response) => {
+                                                      setDrop(response)
+                                                    })
+                                                  }}
+                                                >
+                                                  <i class="fas fa-tag"></i>
+                                                  Etiquetas
+                                                </button>
+                                              </div>
+                                              <div class="col">
+                                                <button
+                                                  className={
+                                                    'btn btn-' +
+                                                    etiqueta +
+                                                    ' etiquetas-btn'
+                                                  }
+                                                  id="selected-etq"
+                                                ></button>
+                                              </div>
+                                            </div>
+                                            {etiquetaDrop === true && (
+                                              <div class="row etiquetas">
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-primary"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'primary',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-secondary"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'secondary',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-danger"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'danger',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-warning"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'warning',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-info"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'info',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                                <div class="row">
+                                                  <button
+                                                    type="button"
+                                                    class="btn btn-dark"
+                                                    onClick={() => {
+                                                      toggleEtiquetaColor(
+                                                        'dark',
+                                                      )
+                                                    }}
+                                                  ></button>
+                                                </div>
+                                              </div>
+                                            )}
+                                            <div class="dropdown-divider"></div>
+                                            <div class="row">
+                                              <div class="d-grid gap-2 mt-3">
+                                                <button
                                                   class="btn btn-primary"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor(
-                                                      'primary',
-                                                    )
-                                                  }}
-                                                ></button>
-                                              </div>
-                                              <div class="row">
-                                                <button
                                                   type="button"
-                                                  class="btn btn-secondary"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor(
-                                                      'secondary',
-                                                    )
-                                                  }}
-                                                ></button>
-                                              </div>
-                                              <div class="row">
+                                                >
+                                                  Atualizar Task
+                                                </button>
                                                 <button
-                                                  type="button"
                                                   class="btn btn-danger"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor(
-                                                      'danger',
-                                                    )
-                                                  }}
-                                                ></button>
-                                              </div>
-                                              <div class="row">
-                                                <button
                                                   type="button"
-                                                  class="btn btn-warning"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor(
-                                                      'warning',
-                                                    )
-                                                  }}
-                                                ></button>
-                                              </div>
-                                              <div class="row">
-                                                <button
-                                                  type="button"
-                                                  class="btn btn-info"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor('info')
-                                                  }}
-                                                ></button>
-                                              </div>
-                                              <div class="row">
-                                                <button
-                                                  type="button"
-                                                  class="btn btn-dark"
-                                                  onClick={() => {
-                                                    toggleEtiquetaColor('dark')
-                                                  }}
-                                                ></button>
+                                                >
+                                                  Apagar Task
+                                                </button>
                                               </div>
                                             </div>
-                                          )}
-                                          <div class="dropdown-divider"></div>
-                                          <div class="row">
-                                            <div class="d-grid gap-2 mt-3">
-                                              <button
-                                                class="btn btn-primary"
-                                                type="button"
-                                              >
-                                                Atualizar Task
-                                              </button>
-                                              <button
-                                                class="btn btn-danger"
-                                                type="button"
-                                              >
-                                                Apagar Task
-                                              </button>
-                                            </div>
-                                          </div>
-                                        </Typography>
-                                      </Box>
-                                    </Modal>
-                                  </div>
-                                )
-                              }}
-                            </Draggable>
-                          )
-                        })}
+                                          </Typography>
+                                        </Box>
+                                      </Modal>
+                                    </div>
+                                  )
+                                }}
+                              </Draggable>
+                            )
+                          })}
                         {provided.placeholder}
                       </div>
                     )

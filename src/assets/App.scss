@@ -339,7 +339,7 @@ textarea {
   text-decoration: none;
   background-color: white;
   margin-bottom: 8px;
-  padding:0px;
+  padding: 0px;
 }
 
 /*----------------Dashboard----------------*/
@@ -646,12 +646,20 @@ textarea {
     @include center-x();
   }
 }
+.boardCard {
+  width: 100% !important;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
 
 /*-----------------Mobile-----------------*/
 
 @media only screen and (max-width: 1616px) {
   .boardCard {
-    width: 40% !important;
+    width: 100% !important;
   }
 }
 

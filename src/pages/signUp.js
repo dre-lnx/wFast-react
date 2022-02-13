@@ -70,7 +70,7 @@ const SignUp = () => {
             <TextField type="password" label="Senha" name="pwd"></TextField>
             <TextField type="password" label="Digite Novamente a Senha" name="confirmPwd"></TextField>
           <button type="submit" class="btn btn-success">
-            Criar Conta
+            SignUp
           </button>
           <Link to="/login" className="form-link">
             Já possuo uma conta

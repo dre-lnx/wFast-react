@@ -63,14 +63,17 @@ const onDragEnd = (result, columns, setColumns) => {
 const Item = () => {
   const [initialColumnsFromBackEnd, setInitialColumns] = useState([
     {
+      id: '1',
       name: 'toDo',
       items: [],
     },
     {
+      id: '2',
       name: 'doing',
       items: [],
     },
     {
+      id: '3',
       name: 'done',
       items: [],
     },
@@ -98,7 +101,11 @@ const Item = () => {
     if (tasks && data) {
       tasks.map((task) => {
         return setColumnsFromBackEnd(
-          initialColumnsFromBackEnd[0].items.push(task),
+          initialColumnsFromBackEnd.map((col) => {
+            if (col.id === task.Status.id) {
+              col.items.push(task)
+            }
+          }),
         )
       })
       console.log(columnsFromBackEnd)

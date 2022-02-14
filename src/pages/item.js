@@ -86,7 +86,7 @@ const Item = () => {
   const [tasks, setTasks] = useState(null)
   const { userId, boardId } = useParams()
 
-  const { data, error, loading } = useQuery(GET_BOARD_TASKS, {
+  const { data } = useQuery(GET_BOARD_TASKS, {
     variables: { user: userId, board: boardId },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',

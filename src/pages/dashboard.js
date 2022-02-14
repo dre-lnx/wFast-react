@@ -1,17 +1,40 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { GET_USER_BOARDS } from '../graphql/queries'
+import { CREATE_BOARD } from '../graphql/mutations'
 import AuthContext from '../contexts/auth'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TextField from '../components/TextField'
+import * as Yup from 'yup'
+import { Form, Formik } from 'formik'
+
+const style = {
+  position: 'absolute',
+  top: '40%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  height: 300,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+}
 
 const Dashboard = () => {
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   const [boards, setBoards] = useState(null)
 
   const contexto = useContext(AuthContext)
 
   console.log(contexto)
 
-  const { error, loading, data } = useQuery(GET_USER_BOARDS, {
+  const { error, data } = useQuery(GET_USER_BOARDS, {
     variables: { id: parseInt(contexto.user.id) },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
@@ -20,9 +43,24 @@ const Dashboard = () => {
     },
   })
 
+  const [ searchNewBoards ] = useLazyQuery(GET_USER_BOARDS, {
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
+    onCompleted: async (res) => {
+      setBoards(res.getUserBoards)
+    },
+  })
+  
+
   useEffect(() => {
     console.log(boards)
   }, [boards])
+
+  const validate = Yup.object({
+    board: Yup.string().required('Obrigatório'),
+  })
+
+  const [addBoard, { loading }] = useMutation(CREATE_BOARD)
 
   return (
     <div className="dashboard-container">
@@ -35,9 +73,73 @@ const Dashboard = () => {
                   <i class="far fa-user-circle"></i>Perfil
                 </li>
               </Link>
-              <li>
+              <li onClick={handleOpen}>
                 <i class="far fa-plus-square"></i>Criar Board
               </li>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    Adicionar Board
+                  </Typography>
+                  <Formik
+                    initialValues={{
+                      board: '',
+                    }}
+                    validationSchema={validate}
+                    onSubmit={async (values, actions) => {
+                      console.log(values.board)
+
+                      const input = {
+                        name: values.board,
+                        userId: contexto.user.id,
+                      }
+
+                      console.log(input)
+
+                      await addBoard({
+                        variables: {
+                          name: values.board,
+                          userId: contexto.user.id,
+                        },
+                      })
+
+                      searchNewBoards({
+                        variables: { id: parseInt(contexto.user.id) },
+                      })
+
+                      handleClose()
+
+                      actions.resetForm({
+                        values: {
+                          board: '',
+                        },
+                      })
+                    }}
+                  >
+                    <div class="row">
+                      <Form>
+                        <TextField
+                          type="text"
+                          label="board"
+                          name="board"
+                        ></TextField>
+                        <button type="submit" class="btn btn-primary">
+                          Criar
+                        </button>
+                      </Form>
+                    </div>
+                  </Formik>
+                </Box>
+              </Modal>
               <li>
                 <i class="fas fa-sliders-h"></i>Preferências
               </li>

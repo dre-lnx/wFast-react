@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import avatar from '../assets/rick.jpg'
 import { Link } from 'react-router-dom'
+import AuthContext from '../contexts/auth'
 
 const Profile = () => {
+
+  const contexto = useContext(AuthContext)
+
   return (
     <div className="container-fluid profile-container container-pattern">
       <div className="flex-x-end">
@@ -16,18 +20,12 @@ const Profile = () => {
         <div className="user-frame">
           <div className="user-highlights mb-5">
             <img src={avatar} alt="foto de perfil" />
-            <h3>Ricky Astley</h3>
-            <span>ricky@email.com</span>
+            <h3>{contexto.user.name}</h3>
+            <span>{contexto.user.email}</span>
           </div>
           <div className="description">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            {contexto.user.description}
             </p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import '../assets/App.css'
 import logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import TextField from '../components/TextField'
 import * as Yup from 'yup'
@@ -14,6 +14,8 @@ const LogIn = () => {
   const contexto = useContext(AuthContext)
 
   console.log(contexto)
+
+  const history = useHistory()
 
   const [authUser, { loading, data }] = useLazyQuery(LOGIN)
 
@@ -50,9 +52,10 @@ const LogIn = () => {
         authUser({
           variables: { data: { email: email, pwd: senha } },
           onComplete: async (res) => {
-            console.log(res)
           },
         })
+
+        //history.push('/dashboard')
 
         actions.resetForm({
           values: {

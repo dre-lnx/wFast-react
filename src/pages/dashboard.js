@@ -34,6 +34,7 @@ const Dashboard = () => {
 
   console.log(contexto)
 
+  //Busca as Boards quando a página carrega
   const { error, data } = useQuery(GET_USER_BOARDS, {
     variables: { id: parseInt(contexto.user.id) },
     notifyOnNetworkStatusChange: true,
@@ -43,6 +44,7 @@ const Dashboard = () => {
     },
   })
 
+  //Busca novamente as boards após alguma ser adicionada ou excluída
   const [ searchNewBoards ] = useLazyQuery(GET_USER_BOARDS, {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
@@ -60,6 +62,7 @@ const Dashboard = () => {
     board: Yup.string().required('Obrigatório'),
   })
 
+  //Adiciona Board
   const [addBoard, { loading }] = useMutation(CREATE_BOARD)
 
   return (

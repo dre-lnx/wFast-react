@@ -21,6 +21,7 @@ export const LOGIN = gql`
         id
         name
         email
+        description
       }
     }
   }
@@ -50,4 +51,12 @@ export const GET_BOARD_TASKS = gql`
       }
     }
   }
+`
+export const GET_USER_BY_ID = gql`
+  query getUserById($id: ID!) {
+  getUserById(id: $id) {
+    id
+    name
+  }
+}
 `

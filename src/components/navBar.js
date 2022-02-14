@@ -8,7 +8,7 @@ import avatar from '../assets/rick.jpg'
 
 const NavBar = () => {
 
-  const { signed } = useContext(AuthContext);
+  const { signed, user, Logout } = useContext(AuthContext);
 
   const [dropDown, setDropdown] = useState(false)
 
@@ -35,9 +35,6 @@ const NavBar = () => {
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-              <li>
-                <Link to="/item">Item</Link>
-              </li>
             </>
           }
             <li>
@@ -49,7 +46,7 @@ const NavBar = () => {
       {signed === true &&
       <>
         <div className="avatar-div" onClick={() => toggle(dropDown)}>
-          <span className="avatar-title">Rick</span>
+          <span className="avatar-title">{user.name}</span>
           <img src={avatar} alt="user avatar" className="avatar-img" />
         </div>
       </>
@@ -59,7 +56,9 @@ const NavBar = () => {
         <div className="dropDown flex-x-end">
           <ul>
             <li>
+              <div onClick={Logout}>
               <i class="fas fa-sign-out-alt"></i>Log out
+              </div>
             </li>
             <li>
               <hr class="dropdown-divider" />

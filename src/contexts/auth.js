@@ -11,8 +11,8 @@ export const AuthProvider = ({children}) => {
 
     //Adiciona topicos do localstorage para sessão
     useEffect(() => {
-        localStorage.setItem('@App:user', JSON.stringify(user));
-        localStorage.setItem('@App:token', token);
+            localStorage.setItem('@App:user', JSON.stringify(user));
+            localStorage.setItem('@App:token', token);
     }, [token, user])
 
     const Login = async(userObj) => {
@@ -21,8 +21,19 @@ export const AuthProvider = ({children}) => {
 
     }
 
+    const Update = async(obj) => {
+        setUser(obj)
+    }
+
+    const Logout = () => {
+        setUser(null);
+
+        localStorage.removeItem('@App:user');
+        localStorage.removeItem('@App:token');
+    }
+
     return (
-        <AuthContext.Provider value={ { signed: Boolean(user), Login, user } }>
+        <AuthContext.Provider value={ { signed: Boolean(user), Login, user, Update, Logout } }>
             {children}
         </AuthContext.Provider>
     );

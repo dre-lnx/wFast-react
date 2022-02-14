@@ -17,7 +17,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 560,
+  height: 620,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -45,6 +45,7 @@ const onDragEnd = (result, columns, setColumns) => {
         items: destItems,
       },
     })
+
   } else {
     const column = columns[source.droppableId]
     const copiedItems = [...column.items]

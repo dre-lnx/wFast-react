@@ -16,3 +16,15 @@ export const CREATE_BOARD = gql`
     }
   }
 `
+
+export const UPDATE_USER_BY_ID = gql`
+  mutation UpdateUser($id: ID!, $name: String!, $description: String, $email: String!, $pwd: String!) {
+  updateUser(id: $id, data: {name: $name, description: $description, email: $email, pwd: $pwd}) {
+    id
+    name
+    description
+    email
+  }
+}
+
+`

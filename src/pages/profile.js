@@ -3,8 +3,10 @@ import avatar from '../assets/rick.jpg'
 import { Link } from 'react-router-dom'
 import AuthContext from '../contexts/auth'
 
+//Inicializa o componente para visualização dos dados de usuário
 const Profile = () => {
 
+  //Inicializa o contexto(para pegar dados setados no localstorage)
   const contexto = useContext(AuthContext)
 
   return (

@@ -7,10 +7,13 @@ import { Form, Formik } from 'formik'
 import TextField from '../components/TextField'
 import * as Yup from 'yup'
 
+//Inicializa componente para formulário de registro de usuário
 const SignUp = () => {
 
+  //Método chamado para adicionar usuário sempre que os ados forem preenchidos corretamente
   const [addUser] = useMutation(ADD_USER)
 
+  //Constatnte do yup, utilizada para denominar parâmetros os quais os campos devem seguir
   const validate = Yup.object({
     name: Yup.string()
       .max(20, 'O Nome pode ter no máximo 20 caracteres')

@@ -11,6 +11,7 @@ import TextField from '../components/TextField'
 import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 
+//Estilo do modal de adição de board
 const style = {
   position: 'absolute',
   top: '40%',
@@ -24,15 +25,16 @@ const style = {
   p: 4,
 }
 
+//Inicializa o componente principal - Dashboard
 const Dashboard = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [boards, setBoards] = useState(null)
 
+  //Inicializa o contexto(para pegar dados setados no localstorage)
   const contexto = useContext(AuthContext)
 
-  console.log(contexto)
 
   //Busca as Boards quando a página carrega
   const { error, data } = useQuery(GET_USER_BOARDS, {
@@ -52,12 +54,8 @@ const Dashboard = () => {
       setBoards(res.getUserBoards)
     },
   })
-  
 
-  useEffect(() => {
-    console.log(boards)
-  }, [boards])
-
+  //Objeto do Yup, ferramenta que busca validar um campo através de atributos
   const validate = Yup.object({
     board: Yup.string().required('Obrigatório'),
   })
@@ -99,14 +97,11 @@ const Dashboard = () => {
                     }}
                     validationSchema={validate}
                     onSubmit={async (values, actions) => {
-                      console.log(values.board)
 
                       const input = {
                         name: values.board,
                         userId: contexto.user.id,
                       }
-
-                      console.log(input)
 
                       await addBoard({
                         variables: {

@@ -6,14 +6,28 @@ import AuthContext from '../contexts/auth'
 import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 import { UPDATE_USER_BY_ID } from '../graphql/mutations'
+import { GET_USER_BY_ID } from '../graphql/queries'
 import { useMutation, useLazyQuery, useQuery } from '@apollo/client'
 
 const ProfileEdit = () => {
 
-  const [ usrObj, setUsrObj ] = useState(null)
-
+//Inicializa o contexto(para pegar dados setados no localstorage)
   const contexto = useContext(AuthContext)
 
+  //Inicializa o hook responsável por receber obj de dados de usuário(não recebe senha!)
+  const [ usrObj, setUsrObj ] = useState(null)
+
+  //Busca por dados de usuário a partir do seu ID
+  const { error } = useQuery(GET_USER_BY_ID, {
+    variables: { id: parseInt(contexto.user.id) },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
+    onCompleted: async(res) => {
+      console.log(res)
+    }
+  })
+
+  //Seta o Yup(ferramenta de validação dos campos)
   const validate = Yup.object({
     name: Yup.string()
       .max(20, 'O Nome pode ter no máximo 20 caracteres')
@@ -22,12 +36,14 @@ const ProfileEdit = () => {
       .email('Insira um e-mail válido')
       .required('Obrigatório'),
     description: Yup.string()
-      .max(250, 'A descrição pode ter no máximo 250 caracteres')
+      .max(250, 'A descrição pode ter no máximo 250 caracteres'),
   })
 
 
+  //Atualiza dados de usuário por meio de seu ID
   const [ updateUser, { data, loading } ] = useMutation(UPDATE_USER_BY_ID)
 
+  //Atualiza o localstorage por meio de um método disponível no contexto tomando como parametro o objeto de informações inicial sempre que ele for atualizado
   useEffect(() => {
     if(data) {
       contexto.Update(usrObj)
@@ -35,12 +51,6 @@ const ProfileEdit = () => {
   }, [usrObj])
 
   //const [authUser, { error }] = useLazyQuery(LOGIN)
-
-  /*const { data, error } = useQuery(GET_USER_BY_ID, {
-    variables: { id: parseInt(contexto.user.id) },
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-and-network',
-  })*/
 
 
   return (
@@ -68,41 +78,17 @@ const ProfileEdit = () => {
                           name: values.name,
                           email: values.email,
                           description: values.description,
-                          pwd: 'pedro123'
                         },
                         onCompleted: async(res) => {
                            setUsrObj(res.updateUser)
                         }
                       })
 
-
-
-
-
-                      /*authUser({
-                        variables: { data : { email: 'pedro@yahoo.com', pwd: 'pedro123' } },
-                        onCompleted: async(res) => {
-                          await setUsrObj(res.logIn)
-                        }
-                      })
-
-                      console.log(usrObj)
-
-                      contexto.Login(usrObj)*/
-
-
-
-                      /*searchNewBoards({
-                        variables: { id: parseInt(contexto.user.id) },
-                      })*/
-
-                      
-
                       actions.resetForm({
                         values: {
-                          name: contexto.user.name,
-                          email: contexto.user.email,
-                          description: contexto.user.description,
+                          name: values.name,
+                          email: values.email,
+                          description: values.description,
                         },
                       })
                     }}

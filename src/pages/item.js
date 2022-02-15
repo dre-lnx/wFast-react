@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
@@ -7,10 +7,13 @@ import { useParams } from 'react-router-dom'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import { v4 as uuid } from 'uuid'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
 
 import { GET_BOARD_TASKS } from '../graphql/queries'
+import { CREATE_TASK, UPDATE_TASK_BY_ID } from '../graphql/mutations'
+import AuthContext from '../contexts/auth'
 
+//Estilo do modal de edição das tarefas
 const style = {
   position: 'absolute',
   top: '40%',
@@ -24,44 +27,9 @@ const style = {
   p: 4,
 }
 
-const onDragEnd = (result, columns, setColumns) => {
-  if (!result.destination) return
-  const { source, destination } = result
-  if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId]
-    const destColumn = columns[destination.droppableId]
-    const sourceItems = [...sourceColumn.items]
-    const destItems = [...destColumn.items]
-    const [removed] = sourceItems.splice(source.index, 1)
-    destItems.splice(destination.index, 0, removed)
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
-    })
-
-  } else {
-    const column = columns[source.droppableId]
-    const copiedItems = [...column.items]
-    const [removed] = copiedItems.splice(source.index, 1)
-    copiedItems.splice(destination.index, 0, removed)
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems,
-      },
-    })
-  }
-}
-
 const Item = () => {
+
+  //Inicia o hook de definição das colunas padrão em forma de Array de objetos
   const [initialColumnsFromBackEnd, setInitialColumns] = useState([
     {
       id: '1',
@@ -80,39 +48,106 @@ const Item = () => {
     },
   ])
 
+  //Inicializa o hook de tarefas
+  const [tasks, setTasks] = useState(null)
+  //Busca pelos parametros de ID de usuário e ID de board na URL(em caso de mudança do id de usuário manualmente na url há o logout automatico)
+  const { userId, boardId } = useParams()
+  //Inicializa o hook que Busca pela tarefa a qual necessita ter o status alterado
+  const [ statusChangeTask, setStatusChangeTask ] = useState(null)
+  //Inicializa o hook que busca pelo id do status a ser setado para a tarefa
+  const [ statusToChange, setStatusToChange ] = useState('')
+
+  //Inicializa o contexto(para pegar dados setados no localstorage)
+  const contexto = useContext(AuthContext);
+
+  //Método para alterar tarefa tomando como referencia seu ID
+  const [ updateTask ] = useMutation(UPDATE_TASK_BY_ID)
+
+  //Lógica para gerenciar a mudança visual de status das tarefas
+  const onDragEnd = (result, columns, setColumns) => {
+    if (!result.destination) return
+    const { source, destination } = result
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId]
+      const destColumn = columns[destination.droppableId]
+      const sourceItems = [...sourceColumn.items]
+      const destItems = [...destColumn.items]
+      const [removed] = sourceItems.splice(source.index, 1)
+      destItems.splice(destination.index, 0, removed)
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems,
+        },
+      })
+
+      //Lógica para gerenciamento de status das tarefas com hooks
+      sourceColumn.items.map((item) => {
+        destItems.map((destItem) => {
+          if(destItem.id === item.id) {
+            setStatusChangeTask(destItem)
+            setStatusToChange(destColumn.id)
+          }
+        })
+      })
+
+    } else {
+      const column = columns[source.droppableId]
+      const copiedItems = [...column.items]
+      const [removed] = copiedItems.splice(source.index, 1)
+      copiedItems.splice(destination.index, 0, removed)
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      })
+    }
+  }
+
+  //Checa se o status de uma task mudou, caso sim, lança a requisição para mudança da mesma no banco
+  useEffect(() => {
+    if(statusChangeTask) {
+    updateTask({
+        variables: {
+          id: statusChangeTask.id,
+          name: statusChangeTask.name,
+          statusId: statusToChange,
+          description: statusChangeTask.description,
+          boardId: boardId,
+          userId: userId
+        }
+      })
+    }
+  }, [statusChangeTask, statusToChange])
+
+
+  //Método para criar Tarefa
+  const [createUserTask, { loading }] = useMutation(CREATE_TASK);
+
+  //Inicializa as colunas padrão tomando como base a inicialização padrão das mesmas
   const [columnsFromBackEnd, setColumnsFromBackEnd] = useState(
     initialColumnsFromBackEnd,
   )
 
-  const [tasks, setTasks] = useState(null)
-  const { userId, boardId } = useParams()
-
+  //Busca pelas tarefas da Board específica do usuário quando o componente é renderizado e seta o Hook de Tasks
   const { data } = useQuery(GET_BOARD_TASKS, {
     variables: { user: userId, board: boardId },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
     onCompleted: async (res) => {
-      console.log(res)
       setTasks(res.getBoardTasks)
     },
   })
 
-  useEffect(() => {
-    setColumnsFromBackEnd(initialColumnsFromBackEnd)
-    if (tasks && data) {
-      tasks.map((task) => {
-        return setColumnsFromBackEnd(
-          initialColumnsFromBackEnd.map((col) => {
-            if (col.id === task.Status.id) {
-              col.items.push(task)
-            }
-          }),
-        )
-      })
-      console.log(columnsFromBackEnd)
-      console.log(tasks)
-    }
-  }, [tasks])
+  //Busca pelas tarefas da Board específica do usuário apenas quando for requisitado
+  const [ getBoards, { error } ] = useLazyQuery(GET_BOARD_TASKS)
 
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => {
@@ -124,16 +159,19 @@ const Item = () => {
     setDrop(false)
   }
 
+  //Inicia o hook das colunas com o array das colunas padrão(columnsFromBackEnd)
   const [columns, setColumns] = useState(columnsFromBackEnd)
+
+  //Inicia o hook dos status com o array dos nomes dos status
   const [statuses, setStatuses] = useState(['toDo', 'doing', 'done'])
 
+  //Hooks de gerenciamento de dropdowns/etiquetas/status
   const [dropDown, setDropdown] = useState(false)
   const [etiquetaDrop, setDrop] = useState(false)
-
   const [status, setStatus] = useState(null)
-
   const [etiqueta, setEtiqueta] = useState('primary')
 
+  //Gerenciamento de dropdowns das colunas
   const toggle = async (val, status) => {
     if (val === true) {
       await setDropdown(false)
@@ -144,6 +182,7 @@ const Item = () => {
     }
   }
 
+  //Gerenciamento das etiquetas das colunas
   const etiquetaToggle = async (val) => {
     if (val === true) {
       return false
@@ -152,24 +191,71 @@ const Item = () => {
     }
   }
 
+  //Gerenciamento da classe do componente para obter a cor da etiqueta desejada
   const toggleEtiquetaColor = (className) => {
-    console.log(className)
     return setEtiqueta(className)
   }
 
+  //Atualiza dados da tarefa quando requisitado
+  const updateTasks = async() => {
+    await getBoards({
+      variables: {
+         user: contexto.user.id, board: boardId
+      },
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'cache-and-network',
+      onCompleted: async (res) => {
+        setTasks(res.getBoardTasks)
+        console.log(res.getBoardTasks)
+      },
+    })
+  }
+
+  //Cria tarefa quando requisitado
   const createTask = (column) => {
     statuses.forEach((stts, index) => {
       if (column === stts) {
-        columns[index].items.push({ id: uuid(), name: 'New Task' })
+        createUserTask({
+          variables: {
+            name: 'New Task',
+            statusId : (index + 1),
+            description : '',
+            boardId : boardId,
+            userId : contexto.user.id
+          },
+        })
+        updateTasks()
+        //columns[index].items.push({ id: uuid(), name: 'New Task' })
       }
     })
   }
 
+  //Monitora a mudança das tarefas disponíveis na inicialização da aplicação e em caso de adição de alguma nova para atualizar as colunas e puxar as novas tasks do banco
+  useEffect(() => {
+    updateCols()
+  }, [tasks])
+
+  //Atualiza/Inicializa colunas e suas tasks
+  const updateCols = async () => {
+    setColumnsFromBackEnd(initialColumnsFromBackEnd)
+    if (tasks) {
+      await tasks.map((task) => {
+        return setColumnsFromBackEnd(
+          initialColumnsFromBackEnd.map((col) => {
+            if (col.id === task.Status.id) {
+              col.items.push(task)
+            }
+          }),
+        )
+      })
+    }
+  }
+
+  //Apaga todas as tarefas de uma coluna específica
   const deleteAllTasks = (column) => {
     statuses.forEach((stts, index) => {
       if (column === stts) {
         columns[index].items.length = 0
-        console.log(columns[index].items)
       }
     })
   }
@@ -200,6 +286,7 @@ const Item = () => {
                         <li
                           onClick={() => {
                             createTask(column.name)
+                            updateCols()
                             toggle(dropDown, column.name).then((response) => {
                               setStatus(response)
                             })

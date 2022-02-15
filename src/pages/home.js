@@ -2,6 +2,7 @@ import React from 'react'
 
 import logo from '../assets/logo.svg'
 
+//Inicializa o componente Home da landpage
 const Home = () => {
   return (
     <div className="container">

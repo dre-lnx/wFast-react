@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Inicializa componente de página não encontrada
 const PageNotFound = () => {
   return (
     <div className="container">

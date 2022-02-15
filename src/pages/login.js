@@ -10,15 +10,18 @@ import { useLazyQuery } from '@apollo/client'
 
 import AuthContext from '../contexts/auth'
 
+//Inicializa o componente de LogIn
 const LogIn = () => {
+
+//Inicializa o contexto(para pegar dados setados no localstorage)
   const contexto = useContext(AuthContext)
 
-  console.log(contexto)
+  //const history = useHistory()
 
-  const history = useHistory()
-
+  //Método responsável por chamar a função de autenticação do backend
   const [authUser, { loading, data }] = useLazyQuery(LOGIN)
 
+  //Monitora os dados de login para que quando forem preenchidos, sejam usados como parametros para funções de autenticação do contexto
   useEffect(() => {
     console.log(data)
     if (data) {
@@ -28,6 +31,7 @@ const LogIn = () => {
     }
   }, [data])
 
+  //Valida os dados do formulário
   const validate = Yup.object({
     email: Yup.string()
       .email('Insira um e-mail válido')

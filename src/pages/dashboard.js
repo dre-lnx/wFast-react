@@ -18,7 +18,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 300,
+  height: 250,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -35,7 +35,6 @@ const Dashboard = () => {
   //Inicializa o contexto(para pegar dados setados no localstorage)
   const contexto = useContext(AuthContext)
 
-
   //Busca as Boards quando a página carrega
   const { error, data } = useQuery(GET_USER_BOARDS, {
     variables: { id: parseInt(contexto.user.id) },
@@ -47,7 +46,7 @@ const Dashboard = () => {
   })
 
   //Busca novamente as boards após alguma ser adicionada ou excluída
-  const [ searchNewBoards ] = useLazyQuery(GET_USER_BOARDS, {
+  const [searchNewBoards] = useLazyQuery(GET_USER_BOARDS, {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
     onCompleted: async (res) => {
@@ -97,7 +96,6 @@ const Dashboard = () => {
                     }}
                     validationSchema={validate}
                     onSubmit={async (values, actions) => {
-
                       const input = {
                         name: values.board,
                         userId: contexto.user.id,
@@ -130,8 +128,15 @@ const Dashboard = () => {
                           label="board"
                           name="board"
                         ></TextField>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary me-3">
                           Criar
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-danger"
+                          onClick={handleClose}
+                        >
+                          Cancelar
                         </button>
                       </Form>
                     </div>
@@ -152,7 +157,9 @@ const Dashboard = () => {
             {boards &&
               boards.map((board) => {
                 return (
-                  <Link to={`item/${contexto.user.id}/${board.id}`}>
+                  <Link
+                    to={`item/${contexto.user.id}/${board.name}/${board.id}`}
+                  >
                     <div className="boardCard">
                       <span>{board.name}</span>
                     </div>

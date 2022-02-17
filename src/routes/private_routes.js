@@ -8,6 +8,7 @@ import Item from '../pages/item'
 import ProfileEdit from '../pages/profileEdit'
 import Profile from '../pages/profile'
 import Home from '../pages/home'
+import TaskEdit from '../pages/taskEdit'
 
 const Private_routes = () => {
   return (
@@ -16,7 +17,8 @@ const Private_routes = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/item/:userId/:boardId" component={Item} />
+        <Route path="/edit/:boardId/:id" component={TaskEdit} />
+        <Route path="/item/:userId/:boardName/:boardId" component={Item} />
         <Route path="/profile/edit" component={ProfileEdit} />
         <Route path="/profile" component={Profile} />
         <Route component={PageNotFound} />

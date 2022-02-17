@@ -52,6 +52,29 @@ export const GET_BOARD_TASKS = gql`
     }
   }
 `
+
+export const GET_TASK_BY_ID = gql`
+query getTaskById($id: ID!) {
+  getTaskById(id: $id) {
+    id
+    name
+    description
+    Status {
+      id
+      name
+    }
+    Board {
+      id
+      name
+    }
+    User {
+      name
+      email
+    }
+  }
+}
+`
+
 export const GET_USER_BY_ID = gql`
   query getUserById($id: ID!) {
   getUserById(id: $id) {
